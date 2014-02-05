@@ -1,0 +1,20 @@
+extend layout
+block content
+    h1(class='singup-title') #{lingua.login.forgot.title}
+    if (error)
+        div(class='alert alert-danger') #{error}
+    if (sent)
+        div(class='alert alert-success') #{sent}
+    else
+        div(class='login-form col-sm-8')
+            form(class='form-horizontal',role='form',method='post')
+                div(class='form-group')
+                    label(class='col-sm-4 control-label',for='email') #{lingua.install.information.form.email}
+                    div(class='col-sm-8')
+                        input(type='email',class='form-control',id='email',name='email',value=form.email)
+                div(class='form-group')
+                    label(class='col-sm-4 control-label')
+                    div(class='col-sm-8')
+                        button(type='submit', class='btn btn-success') #{lingua.login.forgot.button}
+            script(type='text/javascript').
+                $('#email').focus();

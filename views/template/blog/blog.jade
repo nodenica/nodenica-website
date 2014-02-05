@@ -1,0 +1,109 @@
+extend ../layout
+block content
+    div(class='col-md-8')
+        div(class='panel panel-success')
+            div(class='panel-heading')
+                a( class='title',href='/blog/#{post.slug}',target='_self')
+                    span(class='glyphicon glyphicon-file')
+                    span #{post.title}
+                if( permissions )
+                    div(class='btn-group right-align')
+                        a(href='/blog/#{post.slug}/edit',class='btn btn-success btn-header')
+                            span(class='glyphicon glyphicon-edit')
+                            span #{lingua.actions.edit}
+            div(class='panel-body')
+                != marked(post.content)
+        div(class='panel panel-success')
+            div(class='panel-heading')
+                span(class='glyphicon glyphicon-comment')
+                span #{lingua.blogs.reply.form.title}
+            div(class='panel-body unspace')
+                if( post.comments.length > 0 )
+                    each comment in post.comments
+                        div(class='response')
+                            div(class='response-content')
+                                table(class='table no-border')
+                                    tbody
+                                        tr
+                                            td(class='author-picture')
+                                                img(src='#{comment.author.avatar}',class='img-circle')
+                                            td
+                                                != marked(comment.content)
+                            div(class='response-author')
+                                a(href='/user/#{comment.author.username}',target='_self')
+                                    span(class='glyphicon glyphicon-user')
+                                    | #{comment.author.username} &nbsp;
+                                span(class='glyphicon glyphicon-time')
+                                span #{comment.date}
+                div(class='response-form')
+                    if( user )
+                        form(role='form',method='POST',action='')
+                            div(class='form-group')
+                                div(class='form-control',id='epiceditor')
+                                textarea(name='content',id='content')
+                            div(class='form-group')
+                                button(type='submit',class='btn btn-success') #{lingua.blogs.reply.form.button}
+                    else
+                        div
+                            a(href='/user/login?back=/blog/#{post.slug}', class='btn btn-success') #{lingua.login.title}
+                            | &nbsp; #{lingua.blogs.reply.or} &nbsp;
+                            a(href='/user/register', class='btn btn-success') #{lingua.sing_up.title}
+                            | &nbsp; #{lingua.blogs.reply.session}
+    div(class='col-md-4')
+        div(class='panel panel-success')
+            div(class='panel-heading')
+                span #{lingua.blogs.author}
+                a(class='alert-link',href='/user/#{post.author.username}',target='_self')  #{post.author.username}
+            div(class='panel-body')
+                span(class='glyphicon glyphicon-time')
+                | #{post.date}
+        div(class='panel panel-success')
+            div(class='panel-heading') #{lingua.blogs.latest}
+            div(class='panel-body unspace litle-size')
+                if( posts.length > 0 )
+                    table(class='table table-hover table-striped',width='100%',cellspacing='0',cellpadding='10')
+                        each post in posts
+                            tr
+                                td
+                                    span(class='glyphicon glyphicon-file')
+                                    a(href='/blog/#{post.slug}',target='_self') #{post.title}
+        include ../sidebar-streaming
+    script().
+        nav.select('blog');
+        var opts = {
+            container: 'epiceditor',
+            textarea: 'content',
+            basePath: '',
+            clientSideStorage: false,
+            localStorageName: 'epiceditor',
+            useNativeFullscreen: true,
+            parser: marked,
+            file: {
+                name: 'epiceditor',
+                defaultContent: '',
+                autoSave: 0
+                },
+            theme: {
+                base: '/themes/base/epiceditor.css',
+                preview: '/themes/preview/preview-light.css',
+                editor: '/themes/editor/epic-light.css'
+                },
+            button: {
+                preview: true,
+                fullscreen: true,
+                bar: "show"
+                },
+            focusOnLoad: false,
+            shortcut: {
+                modifier: 18,
+                fullscreen: 70,
+                preview: 80
+                },
+            string: {
+                togglePreview: 'Toggle Preview Mode',
+                toggleEdit: 'Toggle Edit Mode',
+                toggleFullscreen: 'Enter Fullscreen'
+                },
+            autogrow: false
+            }
+        var editor = new EpicEditor(opts).load();

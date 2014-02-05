@@ -1,0 +1,47 @@
+extend layout
+block content
+    h1(class='singup-title') #{lingua.sing_up.title}
+
+    if (error)
+        div(class='alert alert-danger') #{error}
+
+    table(width='100%')
+        tbody
+            tr
+                td(width='49%')
+                    div(class='singup-slider')
+                        img(src='/img/sing_up_img.jpg',class='img-thumbnail',alt='t-shirt')
+                        ul
+                            each rule in lingua.sing_up.rules
+                                li #{rule}
+                td(width='49%')
+                    div(class='singup')
+                        form(class='form-horizontal',role='form',method='post')
+                            div(class='form-group')
+                                label(class='col-sm-3 control-label',for='username') #{lingua.install.information.form.username}
+                                div(class='col-sm-8')
+                                    input(type='text',class='form-control',id='username',name='username',value=form.username)
+                            div(class='form-group')
+                                label(class='col-sm-3 control-label',for='first_name') #{lingua.install.information.form.first_name}
+                                div(class='col-sm-8')
+                                    input(type='text',class='form-control',id='first_name',name='first_name',value=form.first_name)
+                            div(class='form-group')
+                                label(class='col-sm-3 control-label',for='last_name') #{lingua.install.information.form.last_name}
+                                div(class='col-sm-8')
+                                    input(type='text',class='form-control',id='last_name',name='last_name',value=form.last_name)
+                            div(class='form-group')
+                                label(class='col-sm-3 control-label',for='email') #{lingua.install.information.form.email}
+                                div(class='col-sm-8')
+                                    input(type='email',class='form-control',id='email',name='email',value=form.email)
+                            div(class='form-group')
+                                label(class='col-sm-3 control-label',for='password') #{lingua.install.information.form.password}
+                                div(class='col-sm-8')
+                                    input(type='password',class='form-control',id='password',name='password',value=form.password)
+                            div(class='form-group')
+                                label(class='col-sm-3 control-label')
+                                div(class='col-sm-8')
+                                    button(type='submit', class='btn btn-success') #{lingua.sing_up.form.button}
+    script(type='text/javascript').
+        $(#{focus}).focus();
+        $('#register').removeClass('login');
+        nav.select('register');

@@ -1,0 +1,73 @@
+extend ../layout
+block content
+    div(class='col-md-8')
+        div(class='panel panel-success')
+            if( mode === 'edit' )
+                div(class='panel-heading') #{lingua.training.edit_post}
+            else
+                div(class='panel-heading') #{lingua.training.create_post}
+            div(class='panel-body')
+                if (error)
+                    div(class='alert alert-danger') #{error}
+                        a(class="close",data-dismiss="alert",href="#",aria-hidden="true") &times;
+                form(role='form',method='POST',action='')
+                    div(class='form-group')
+                        h3 #{lingua.training.create.inputs.title}
+                        input(class='form-control',type='text',name='title',id='title',value=form.title)
+                    div(class='form-group')
+                        h3 #{lingua.training.create.inputs.content}
+                        div(class='form-control',id='epiceditor')
+                        textarea(name='content',id='content') #{form.content}
+                    div(class='form-group')
+                        if( mode === 'edit' )
+                            button(type='submit',class='btn btn-success') #{lingua.training.create.inputs.edit}
+                        else
+                            button(type='submit',class='btn btn-success') #{lingua.training.create.inputs.button}
+    div(class='col-md-4')
+        div(class='panel panel-success')
+            div(class='panel-heading') #{lingua.markdown.title}
+            div(class='panel-body')
+                ul(class='custom litle-size')
+                    each item in lingua.markdown.instructions
+                        li #{item}
+    script(type='text/javascript').
+        $('#title').focus();
+        nav.select('training');
+        var opts = {
+            container: 'epiceditor',
+            textarea: 'content',
+            basePath: '',
+            clientSideStorage: false,
+            localStorageName: 'epiceditor',
+            useNativeFullscreen: true,
+            parser: marked,
+            file: {
+                name: 'epiceditor',
+                defaultContent: '',
+                autoSave: 0
+                },
+            theme: {
+                base: '/themes/base/epiceditor.css',
+                preview: '/themes/preview/preview-light.css',
+                editor: '/themes/editor/epic-light.css'
+                },
+            button: {
+                preview: true,
+                fullscreen: true,
+                bar: "show"
+                },
+            focusOnLoad: false,
+            shortcut: {
+                modifier: 18,
+                fullscreen: 70,
+                preview: 80
+                },
+            string: {
+                togglePreview: 'Toggle Preview Mode',
+                toggleEdit: 'Toggle Edit Mode',
+                toggleFullscreen: 'Enter Fullscreen'
+                },
+            autogrow: false
+            }
+        var editor = new EpicEditor(opts).load();
+        $(".alert").alert();

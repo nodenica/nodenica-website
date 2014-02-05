@@ -1,0 +1,21 @@
+body{
+    background-color: #46483E;
+    border-top: 6px #8CC84B solid;
+    padding: 20px 0px;
+}
+
+.container{
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    margin-top: 20px;
+}
+
+.logo{
+    text-align: center;
+}
+
+.logo .img-responsive {
+    margin: 0 auto;
+    max-width: 95%;
+}

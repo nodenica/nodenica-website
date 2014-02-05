@@ -1,0 +1,61 @@
+doctype html
+html(lang="en")
+    head
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title #{lingua.install.title}
+        link(href='/css/bootstrap.min.css',rel='stylesheet')
+        link(href='/css/install.css',rel='stylesheet')
+        script(src='/js/jquery.min.js').
+
+    body
+        div(class='logo')
+            img(src='/img/logo.png',alt='Logo NodeJS',class='img-responsive')
+
+        div(class='container')
+
+            h1 #{lingua.install.welcome.title}
+            hr
+            div
+                p #{lingua.install.welcome.info}
+
+
+            h3 #{lingua.install.information.title}
+            hr
+            div
+                p #{lingua.install.information.form.info}
+
+            if (error)
+                div(class='alert alert-danger') #{error}
+
+            div
+                form(class='form-horizontal',role='form',method='post')
+                    div(class='form-group')
+                        label(class='col-sm-2 control-label',for='site') #{lingua.install.information.form.site_title}
+                        div(class='col-sm-3')
+                            input(type='text',class='form-control',id='site',name='site',value=form.site)
+                    div(class='form-group')
+                        label(class='col-sm-2 control-label',for='username') #{lingua.install.information.form.username}
+                        div(class='col-sm-3')
+                            input(type='text',class='form-control',id='username',name='username',value=form.username)
+                    div(class='form-group')
+                        label(class='col-sm-2 control-label',for='first_name') #{lingua.install.information.form.first_name}
+                        div(class='col-sm-3')
+                            input(type='text',class='form-control',id='first_name',name='first_name',value=form.first_name)
+                    div(class='form-group')
+                        label(class='col-sm-2 control-label',for='last_name') #{lingua.install.information.form.last_name}
+                        div(class='col-sm-3')
+                            input(type='text',class='form-control',id='last_name',name='last_name',value=form.last_name)
+                    div(class='form-group')
+                        label(class='col-sm-2 control-label',for='email') #{lingua.install.information.form.email}
+                        div(class='col-sm-3')
+                            input(type='email',class='form-control',id='email',name='email',value=form.email)
+                    div(class='form-group')
+                        label(class='col-sm-2 control-label',for='password') #{lingua.install.information.form.password}
+                        div(class='col-sm-3')
+                            input(type='password',class='form-control',id='password',name='password',value=form.password)
+                    div(class='form-group')
+                        label(class='col-sm-2 control-label')
+                        div(class='col-sm-3')
+                            button(type='submit', class='btn btn-success') #{lingua.install.information.form.install}
+        script(type='text/javascript').
+            $(#{focus}).focus();

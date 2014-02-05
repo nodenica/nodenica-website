@@ -1,0 +1,26 @@
+extend ../layout
+block content
+    div(class='col-md-8')
+
+        if( publisher )
+            div(class='form-group')
+                a(class='btn btn-success',href='/blog/create') #{lingua.blogs.create_post}
+
+        if( posts.length > 0 )
+            each post in posts
+                div(class='panel panel-success')
+                    div(class='panel-heading')
+                        a(href='/blog/#{post.slug}',target='_self')
+                            span(class='glyphicon glyphicon-file')
+                            span #{post.title}
+                    div(class='panel-body max-post')
+                        != marked(post.content)
+                div(class='form-group right')
+                    a(href='/blog/#{post.slug}',target='_self',class='btn btn-success')
+                        span(class='glyphicon glyphicon-arrow-right')
+                        span #{lingua.blogs.read_more}
+
+    div(class='col-md-4')
+        include ../sidebar-streaming
+    script(type='text/javascript').
+        nav.select('blog');
