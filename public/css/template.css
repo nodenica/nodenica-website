@@ -476,3 +476,7 @@ pre{
 .stream-box{
     min-height: 300px;
 }
+
+.tweets, .tweets a{
+    font-size: 13px;
+}
