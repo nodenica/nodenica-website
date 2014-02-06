@@ -245,6 +245,10 @@
     },
     "home":{
         "download": "NodeJS 0.10.25",
-        "install": "Instalar"
+        "install": "Instalar",
+        "online":{
+            "title": "Usuarios conectados",
+            "content": "Usuarios conectados: %d"
+        }
     }
 }
