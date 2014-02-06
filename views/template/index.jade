@@ -11,13 +11,16 @@ block content
         div(class='panel panel-success')
             div(class='panel-heading')
                 span #{lingua.home.hashtag}
-            div(class='panel-body unspace')
+            div(class='panel-body unspace tweets')
                 if( tweets.length > 0 )
                     table(class='table table-hover table-striped',width='100%',cellspacing='0',cellpadding='10')
                         each item in tweets
                             tr
                                 td
-                                    p !{item.text}
+                                    strong
+                                        a(href='https://twitter.com/#{item.screen_name}',target='_blank') #{item.screen_name}
+                                    | : !{item.text} &nbsp;
+                                    a(href='https://twitter.com/#{item.screen_name}/status/#{item.id_str}',target='_blank') Abrir
 
 
     div(class='col-md-8')
