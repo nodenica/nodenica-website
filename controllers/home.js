@@ -3,6 +3,7 @@ var marked = require('marked');
 var async = require('async');
 var moment = require('moment');
 var config = require('../config');
+
 moment.lang(config.lang);
 
 exports.index = function (req, res) {
