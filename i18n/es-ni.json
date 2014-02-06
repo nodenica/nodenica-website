@@ -153,7 +153,7 @@
         "create_post": "Crear artículo",
         "edit_post": "Editar artículo",
         "latest": "Artículos recientes",
-        "author": "pors",
+        "author": "por",
         "create":{
             "inputs":{
                 "title": "Título",
