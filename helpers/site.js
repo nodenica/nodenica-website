@@ -1,4 +1,5 @@
 var models = require('../models');
+var path = require('path');
 
 exports.title = function (req, res, next) {
 
@@ -29,4 +30,25 @@ exports.url = function(req, res, next){
 
     next();
 
+}
+
+var environment = function(){
+    switch ( path.resolve(__dirname, '../' ) ){
+        case '/sites/Node-Community':
+            return 'production'
+            break;
+        default:
+            return 'development'
+    }
+}
+
+exports.environment = environment();
+
+exports.isProduction = function(){
+    if( environment() === 'production' ){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
