@@ -8,6 +8,18 @@ block content
             div(class='panel-body')
                 a(href="",class="btn btn-success home-button",id="downloadbutton") #{lingua.home.install}
 
+        div(class='panel panel-success')
+            div(class='panel-heading')
+                span #{lingua.home.hashtag}
+            div(class='panel-body unspace')
+                if( tweets.length > 0 )
+                    table(class='table table-hover table-striped',width='100%',cellspacing='0',cellpadding='10')
+                        each item in tweets
+                            tr
+                                td
+                                    p !{item.text}
+
+
     div(class='col-md-8')
         div(class='panel panel-success')
             div(class='panel-heading') #{lingua.streaming.title}

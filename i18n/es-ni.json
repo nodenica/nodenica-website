@@ -249,6 +249,7 @@
         "online":{
             "title": "Usuarios conectados",
             "content": "Usuarios conectados: %d"
-        }
+        },
+        "hashtag": "#nodenica"
     }
 }
