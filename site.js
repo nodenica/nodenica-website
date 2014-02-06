@@ -9,6 +9,7 @@ var site = require('./helpers').site;
 var us = require('./helpers').users;
 var pid = require('./helpers').pid;
 var email = require('./helpers').email;
+var tweets = require('./helpers').tweets;
 var util = require('util');
 var redis = require('redis');
 var redisDb = redis.createClient();
@@ -17,6 +18,9 @@ var redisDb = redis.createClient();
 if( site.isProduction() ){
     require('newrelic');
 }
+
+// handle hashtag and store
+tweets.enable();
 
 
 io.set('log level', 1);
