@@ -9,6 +9,10 @@ var site = require('./helpers').site;
 var us = require('./helpers').users;
 var pid = require('./helpers').pid;
 var email = require('./helpers').email;
+var util = require('util');
+var redis = require('redis');
+var redisDb = redis.createClient();
+
 
 io.set('log level', 1);
 
@@ -45,7 +49,22 @@ app.use(site.title);
 
 app.use(site.url);
 
+// Users online
+app.use(function(req, res, next){
+    var ua = req.headers['user-agent'];
+    redisDb.zadd('online', Date.now(), ua, next);
+});
 
+app.use(function(req, res, next){
+    var min = 60 * 1000;
+    var ago = Date.now() - min;
+    redisDb.zrevrangebyscore('online', '+inf', ago, function(err, users){
+        if (err) return next(err);
+        req.online = users;
+        res.locals.online = util.format(res.lingua.content.home.online.content, req.online.length);
+        next();
+    });
+});
 
 
 // Validate installation
