@@ -37,6 +37,16 @@ module.exports = {
             sender: 'Your site name <alerts@youtdomain.com>',
             receivers: ['Yout Name <yourname@email.com>']
         }
+    },
+
+    twitter:{
+        hashtag: "#hashtag",
+        twit: {
+            consumer_key: '',
+            consumer_secret: '',
+            access_token: '',
+            access_token_secret: ''
+        }
     }
 
 };
