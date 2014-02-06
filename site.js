@@ -13,6 +13,11 @@ var util = require('util');
 var redis = require('redis');
 var redisDb = redis.createClient();
 
+// send data to newrelic
+if( site.isProduction() ){
+    require('newrelic');
+}
+
 
 io.set('log level', 1);
 
