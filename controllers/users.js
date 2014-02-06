@@ -13,25 +13,30 @@ exports.get = function( req, res ){
 
     models.users.findOne({username: req.params.username }, 'username name email avatar badges activity repositories modules stars created_at', function(err, user){
 
-        //if( user.activity.length > 0 ){
-        //    user.activity.push( vsprintf( res.lingua.content.profile.created_at,[moment(user.created_at).fromNow()]) );
-        //}
+        if( user ){
 
-        if( user.activity.length > 0 ){
-            var i = 0;
-            user.activity.forEach(function(activity){
+            if( user.activity.length > 0 ){
+                var i = 0;
+                user.activity.forEach(function(activity){
 
-                if( i <= 100 ){
+                    if( i <= 100 ){
 
-                    user.activity[i].date = moment(activity.created_at).fromNow();
-                    i++;
+                        user.activity[i].date = moment(activity.created_at).fromNow();
+                        i++;
 
-                }
+                    }
 
-            });
+                });
+            }
+
+            res.render( 'template/profile.jade', { marked:marked, profile: user } );
+
+        }
+        else{
+            res.redirect('/');
         }
 
-        res.render( 'template/profile.jade', { marked:marked, profile: user } );
+
     });
 
 }
