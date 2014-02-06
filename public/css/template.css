@@ -472,3 +472,7 @@ pre{
     width: 100%;
     text-align: center;
 }
+
+.stream-box{
+    min-height: 300px;
+}
