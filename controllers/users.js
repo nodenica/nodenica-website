@@ -193,16 +193,15 @@ exports.activateAction = function( req, res ){
         res.redirect('/');
     }
     else{
-        if( helpers.users.isValidObjectID( req.params.id ) ){
-            var id = mongoose.Types.ObjectId(req.params.id);
+        if( req.params.id  ){
 
-            models.users.findById(id, function(err, user){
+            models.users.findOne({ active_token: req.params.id }, function(err, user){
                 if( err ){
                     res.render('template/activate.jade', { mode: 'action', error: err });
                 }
                 else{
                     if( user ){
-                        models.users.findByIdAndUpdate(req.params.id, { active: true }, function(err, tank){
+                        models.users.findByIdAndUpdate(user.id, { active: true }, function(err, thank){
                             if( err ){
                                 res.render('template/activate.jade', { mode: 'action', error: err });
                             }
