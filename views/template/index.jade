@@ -25,7 +25,7 @@ block content
                     span(class='glyphicon glyphicon-file')
                     span #{lingua.header.main.pages.blog}
             div(class='panel-body unspace home-box')
-                if( questions.length > 0 )
+                if( blog.length > 0 )
                     table(class='table table-hover table-striped',width='100%',cellspacing='0',cellpadding='10')
                         each item in blog
                             tr
@@ -51,7 +51,7 @@ block content
                     span(class='glyphicon glyphicon-file')
                     span #{lingua.header.main.pages.training}
             div(class='panel-body unspace home-box')
-                if( questions.length > 0 )
+                if( training.length > 0 )
                     table(class='table table-hover table-striped',width='100%',cellspacing='0',cellpadding='10')
                         each item in training
                             tr
