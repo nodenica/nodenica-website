@@ -258,7 +258,7 @@ exports.login = function( req, res ){
                 back = req.param('back');
             }
 
-            models.users.findOne({ username: req.body.username, password: helpers.users.passwordHash( req.body.password ) }, 'username name email range badges active avatar' , function(err,user){
+            models.users.findOne({ username: { $regex: req.body.username, $options: 'i' }, password: helpers.users.passwordHash( req.body.password ) }, 'username name email range badges active avatar' , function(err,user){
                 if( !err ){
                     if( user ){
 
