@@ -28,7 +28,7 @@
         "title": "Iniciar sesión",
         "error":{
             "user_active": "El usuario [%s] no ha activado su cuenta vía correo electrónico.",
-            "incorrect_data": "Datos incorrectos, intenta una ves más"
+            "incorrect_data": "Datos incorrectos, intenta una vez más"
         },
         "forgot": {
             "title": "Olvidaste tu contraseña?",
