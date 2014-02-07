@@ -12,8 +12,15 @@ html
         script( src='/js/main.js' ).
         script( src='/socket.io/socket.io.js').
         script( src='/js/epiceditor.min.js').
+        script( src='/socket.io/socket.io.js').
         script.
-            var websocket = io.connect('http://localhost:1234');
+            var websocket = io.connect(document.location.protocol+'//'+document.location.host);
+            $(document).on("ready", open_websocket);
+            function open_websocket()
+                {
+                websocket.on("wsGet", socket.get);
+                }
+
             $('.dropdown-toggle').dropdown();
     body
         header

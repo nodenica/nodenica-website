@@ -60,7 +60,8 @@ exports.index = function (req, res) {
 
         if( results.tweets ){
             results.tweets.forEach(function(tweet){
-               var new_tweet = tweets.parse( tweet );
+               var new_tweet = tweet;
+                new_tweet.text = tweets.autoLink( tweet.text );
                 all_tweets.push(new_tweet);
             });
         }
@@ -68,7 +69,6 @@ exports.index = function (req, res) {
         res.render('template/index', { blog: results.blog, questions: results.questions, training: results.training, tweets: all_tweets });
 
     });
-
 
 }
 
