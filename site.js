@@ -1,4 +1,5 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var cookie  =   require('cookie')
@@ -15,6 +16,7 @@ var socket = require('./helpers').socket;
 var util = require('util');
 var redis = require('redis');
 var redisDb = redis.createClient();
+var RedisStore = require('connect-redis')(express);
 
 var socketio = new socket.use( io );
 
@@ -66,7 +68,14 @@ app.use(express.urlencoded());
 
 // Set cookie parser
 app.use(express.cookieParser());
-app.use(express.session({ secret: '023197422617bce43335cbd3c675aeed', key: 'express.sid' }));
+app.use(express.session({
+    store: new RedisStore({
+        host: 'localhost',
+        port: 6379,
+        db: 2
+    }),
+    secret: '023197422617bce43335cbd3c675aeed',
+    key: 'express.sid' }));
 
 // Set public directory
 app.use(express.static(__dirname + '/public'));
