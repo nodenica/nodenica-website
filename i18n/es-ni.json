@@ -79,6 +79,12 @@
             "tools":{
                 "title": "Herramientas para Desarrolladores",
                 "paragraph": "Aprenda acerca de las herramientas que utilizan las grandes empresas en todo el mundo, lo mejor de todo lo que son de código abierto y libre."
+            },
+            "error":{
+                "title": "No recibiste el correo de activación?",
+                "close": "Cerrar",
+                "header": "No recibiste el correo de activación?",
+                "content": "Escribe a nodenica-activacion@mcnallydevelopers.com para enviarte el enlace de activación. No olvides enviarnos tu nombre de usuario. Lamentamos la molestia."
             }
         }
 
