@@ -221,6 +221,7 @@
         "title": "Actividad reciente"
     },
     "activity": {
+        "new_user": "[%s](/user/%s) se registró",
         "new_question": "[%s](/user/%s) escribió una pregunta: [%s](/questions/%s)",
         "new_question_reply": "[%s](/user/%s) escribión una respuesta en: [%s](/questions/%s)",
         "new_blog_post": "[%s](/user/%s) escribió un artículo: [%s](/blog/%s)",

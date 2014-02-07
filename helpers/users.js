@@ -147,6 +147,11 @@ exports.addActivity = function( type, params ){
 
     var content = '';
     switch (type){
+        case 'new_user':
+
+            content = util.format( i18n.activity[type], params.name, params.username);
+
+            break;
         case 'new_question':
 
             content = util.format( i18n.activity[type], params.name, params.username, params.title, params.slug);

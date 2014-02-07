@@ -62,9 +62,6 @@ function callback(err) {
     if (err){
         console.log('Oh noes: ' + err);
     }
-    else{
-        console.log('Success');
-    }
 }
 
 
