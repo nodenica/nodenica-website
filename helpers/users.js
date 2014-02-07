@@ -4,6 +4,9 @@ var util = require('util');
 var i18n = require('../helpers').i18n();
 var models = require('../models');
 var S = require('string');
+var marked = require( 'marked' );
+var moment = require('moment');
+moment.lang(config.lang);
 
 
 var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
@@ -143,7 +146,7 @@ exports.addBadges = function( username, badges ){
 
 }
 
-exports.addActivity = function( type, params ){
+exports.addActivity = function( type, params, socketio ){
 
     var content = '';
     switch (type){
@@ -210,7 +213,13 @@ exports.addActivity = function( type, params ){
 
         var activity_stream = new models.streaming;
         activity_stream.activity = content;
-        activity_stream.save(function(err){});
+        activity_stream.save(function(err){
+
+            if( !err ){
+                socketio.send({type:'activity',html:marked(content + ' ' + moment(new Date()).fromNow() ) });
+            }
+
+        });
 
     }
 

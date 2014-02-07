@@ -58,7 +58,7 @@ exports.get = function( req, res ){
                         params.username = req.session.user.username;
                         params.slug = req.params.slug;
                         params.title = question.title;
-                        helpers.users.addActivity('new_question_reply', params);
+                        helpers.users.addActivity('new_question_reply', params, req.socketio);
                         res.redirect( req.path );
                     }
                 });
@@ -220,7 +220,7 @@ exports.create = function( req, res ){
                                     params.username = req.session.user.username;
                                     params.slug = slug;
                                     params.title = title;
-                                    helpers.users.addActivity('new_question', params);
+                                    helpers.users.addActivity('new_question', params, req.socketio);
                                     res.redirect('/questions/'+slug);
                                 }
 

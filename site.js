@@ -1,18 +1,22 @@
 var app = require('express')();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
+var cookie  =   require('cookie')
+var connect =   require('connect');
 var lingua  = require('lingua');
 var models = require('./models');
 var routes = require('./routes');
 var config = require('./config');
 var site = require('./helpers').site;
-var us = require('./helpers').users;
 var pid = require('./helpers').pid;
 var email = require('./helpers').email;
 var tweets = require('./helpers').tweets;
+var socket = require('./helpers').socket;
 var util = require('util');
 var redis = require('redis');
 var redisDb = redis.createClient();
+
+var socketio = new socket.use( io );
 
 // send data to newrelic
 if( site.isProduction() ){
@@ -20,10 +24,29 @@ if( site.isProduction() ){
 }
 
 // handle hashtag and store
-tweets.enable();
+tweets.enable(socketio);
 
 
 io.set('log level', 1);
+
+io.set('authorization', function (handshakeData, accept) {
+
+    if (handshakeData.headers.cookie) {
+
+        handshakeData.cookie = cookie.parse(handshakeData.headers.cookie);
+
+        handshakeData.sessionID = connect.utils.parseSignedCookie(handshakeData.cookie['express.sid'], 'secret');
+
+        if (handshakeData.cookie['express.sid'] == handshakeData.sessionID) {
+            return accept('Cookie is invalid.', false);
+        }
+
+    } else {
+        return accept('No cookie transmitted.', false);
+    }
+
+    accept(null, true);
+});
 
 server.listen( config.port );
 
@@ -43,7 +66,7 @@ app.use(express.urlencoded());
 
 // Set cookie parser
 app.use(express.cookieParser());
-app.use(express.session({ secret: '023197422617bce43335cbd3c675aeed' }));
+app.use(express.session({ secret: '023197422617bce43335cbd3c675aeed', key: 'express.sid' }));
 
 // Set public directory
 app.use(express.static(__dirname + '/public'));
@@ -57,6 +80,8 @@ app.use(lingua(app, {
 app.use(site.title);
 
 app.use(site.url);
+
+app.use(socket.express(socketio));
 
 // Users online
 app.use(function(req, res, next){
@@ -78,8 +103,6 @@ app.use(function(req, res, next){
 
 // Validate installation
 app.use(function(req, res, next){
-
-    us.addActivity('a','b');
 
     res.locals.user = req.session.user;
 

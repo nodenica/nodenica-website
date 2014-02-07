@@ -56,3 +56,17 @@ var download = function(){
             location.replace(b.href);
     })(document,navigator);
 }
+
+var socket = {
+    get: function( data ){
+        socket[data.type](data);
+    },
+    tweet: function(tweet){
+        var html = '<tr><td><strong><a href="https://twitter.com/'+tweet.screen_name+'" target="_blank">'+tweet.screen_name+'</a></strong>: '+tweet.text+' &nbsp;<a href="https://twitter.com/nodenica/status/'+tweet.id_str+'" target="_blank">Abrir</a></td></tr>';
+        $(".tweet-box table tbody").prepend(html);
+    },
+    activity: function( activity ){
+        $("#streamingBody").prepend('<tr><td style="display: table-cell;">'+activity.html+'</td></tr>');
+    }
+
+}
