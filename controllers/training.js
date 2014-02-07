@@ -62,7 +62,7 @@ exports.get = function( req, res ){
                             params.username = req.session.user.username;
                             params.slug = req.params.slug;
                             params.title = post.title;
-                            helpers.users.addActivity('new_training_comment', params);
+                            helpers.users.addActivity('new_training_comment', params, req.socketio);
                             res.redirect( req.path );
                         }
                     });
@@ -227,7 +227,7 @@ exports.create = function( req, res ){
                                     params.username = req.session.user.username;
                                     params.slug = slug;
                                     params.title = title;
-                                    helpers.users.addActivity('new_training', params);
+                                    helpers.users.addActivity('new_training', params, req.socketio);
                                     res.redirect('/training/'+slug);
                                 }
 
