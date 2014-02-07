@@ -474,7 +474,13 @@ pre{
 }
 
 .stream-box{
-    min-height: 300px;
+    height: 475px;
+    overflow-y: scroll;
+}
+
+.tweet-box{
+    height: 337px;
+    overflow-y: scroll;
 }
 
 .tweets, .tweets a{

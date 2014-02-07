@@ -43,7 +43,7 @@ exports.index = function (req, res) {
             });
         },
         tweets: function (callback) {
-            var q = models.tweets.find({}).sort({'created_at': -1}).limit(5);
+            var q = models.tweets.find({}).sort({'created_at': -1}).limit(10);
             q.exec(function (err, rows) {
                 if (!err && rows) {
                     callback(null, rows);
