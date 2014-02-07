@@ -5,13 +5,13 @@ block content
         div(class='panel panel-success')
             div(class='panel-heading')
                 span #{lingua.home.download}
-            div(class='panel-body')
+            div(class='panel-body ')
                 a(href="",class="btn btn-success home-button",id="downloadbutton") #{lingua.home.install}
 
         div(class='panel panel-success')
             div(class='panel-heading')
                 span #{lingua.home.hashtag}
-            div(class='panel-body unspace tweets')
+            div(class='panel-body unspace tweets tweet-box')
                 if( tweets.length > 0 )
                     table(class='table table-hover table-striped',width='100%',cellspacing='0',cellpadding='10')
                         each item in tweets
