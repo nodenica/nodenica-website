@@ -5,6 +5,7 @@ var async = require( 'async' );
 var helpers = require( '../helpers' );
 var moment = require('moment');
 var config = require('../config');
+var slugs = require('slug');
 moment.lang(config.lang);
 
 exports.home = function( req, res ){
@@ -183,7 +184,7 @@ exports.create = function( req, res ){
                 title = S(title).stripTags().s;
                 content = S(content).stripTags().s;
 
-                var slug = S(title).slugify().s;
+                var slug = S(slugs(title)).slugify().s;
 
                 var author = {};
                 author.username = req.session.user.username;
