@@ -20,8 +20,26 @@ block content
                     button(type='submit', class='btn btn-success') #{lingua.login.title}
         div(class='login-forgot')
             a(href='/user/forgot',target='_self') #{lingua.login.forgot.title}
+        div(class='login-forgot')
+            a(href='JavaScript:void(0);',target='_self',id="activationModalBtn") #{lingua.sing_up.activate.error.title}
 
+    div(class="modal fade", id="activationModal",tabindex="-1",role="dialog",aria-labelledby="activationModalLabel",aria-hidden="true")
+        div(class="modal-dialog")
+            div(class="modal-content")
+                div(class="modal-header")
+                    button(type="button",class="close",data-dismiss="modal",aria-hidden="true") &times;
+                    h4(class="modal-title") #{lingua.sing_up.activate.error.header}
+
+                div(class="modal-body")
+                    p #{lingua.sing_up.activate.error.content}
+
+                div(class="modal-footer")
+                    button(type="button",class="btn btn-default",data-dismiss="modal") #{lingua.sing_up.activate.error.close}
 
     script(type='text/javascript').
         $(#{focus}).focus();
         nav.select('login');
+        $('#activationModal').modal('hide');
+        $('#activationModalBtn').on('click',function(){
+            $('#activationModal').modal('show');
+        });
