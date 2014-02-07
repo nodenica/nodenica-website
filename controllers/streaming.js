@@ -6,7 +6,7 @@ moment.lang(config.lang);
 
 exports.get = function( req, res ){
 
-    var q = models.streaming.find({}).sort({'created_at': -1}).limit(10);
+    var q = models.streaming.find({}).sort({'created_at': -1}).limit(15);
 
     q.exec(function(err, activity) {
 
