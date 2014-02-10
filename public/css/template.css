@@ -400,7 +400,11 @@ h5.panel-right{
 
 .response-content{
     margin: 10px 0;
+}
 
+.response-content table tbody tr td p{
+    margin: 0 0 10px 0;
+    line-height: 1.2em;
 }
 
 .response-head a{
