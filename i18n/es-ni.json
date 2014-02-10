@@ -123,7 +123,7 @@
         }
     },
     "questions": {
-        "ask_question": "Has una pregunta",
+        "ask_question": "Realiza una pregunta",
         "edit_question": "Editar pregunta",
         "latest": "Preguntas recientes",
         "author": "Por",
@@ -190,7 +190,7 @@
         "read_more": "Leer más..."
     },
     "training": {
-        "create_post": "Cear artículo",
+        "create_post": "Crear artículo",
         "edit_post": "Editar artículo",
         "latest": "Artículos recientes",
         "author": "por",
