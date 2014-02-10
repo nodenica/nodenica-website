@@ -117,7 +117,7 @@
         }
     },
     "questions": {
-        "ask_question": "Has una pregunta",
+        "ask_question": "Realiza una pregunta",
         "edit_question": "Editar pregunta",
         "latest": "Preguntas recientes",
         "author": "Por",
