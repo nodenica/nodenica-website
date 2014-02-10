@@ -3,7 +3,7 @@
         "main": {
             "pages": {
                 "sign_in": "Iniciar sesión",
-                "create_an_account": "Crear una cuenta",
+                "create_an_account": "Registrarse",
                 "blog": "Blog",
                 "events": "Eventos",
                 "questions": "Preguntas",
@@ -222,7 +222,7 @@
     },
     "activity": {
         "new_question": "[%s](/user/%s) escribió una pregunta: [%s](/questions/%s)",
-        "new_question_reply": "[%s](/user/%s) escribión una respuesta en: [%s](/questions/%s)",
+        "new_question_reply": "[%s](/user/%s) escribió una respuesta en: [%s](/questions/%s)",
         "new_blog_post": "[%s](/user/%s) escribió un artículo: [%s](/blog/%s)",
         "new_blog_post_comment": "[%s](/user/%s) hizo un comentario en [%s](/blog/%s)",
         "new_event": "[%s](/user/%s) creó un evento [%s](/events/%s)",
