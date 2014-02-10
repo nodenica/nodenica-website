@@ -6,6 +6,7 @@ var helpers = require( '../helpers' );
 var moment = require('moment');
 var config = require('../config');
 var slugs = require('slug');
+var util = require('util');
 moment.lang(config.lang);
 
 exports.home = function( req, res ){
@@ -64,6 +65,10 @@ exports.get = function( req, res ){
                             params.slug = req.params.slug;
                             params.title = post.title;
                             helpers.users.addActivity('new_training_comment', params, req.socketio);
+
+                            // email notify author
+                            helpers.email.notify([ post.author.username + '<' + post.author.email + '>' ], util.format(res.lingua.content.notify.comment.subject, post.title), util.format(res.lingua.content.notify.comment.body, post.title), res.locals.siteUrl + '/training/' + post.slug );
+
                             res.redirect( req.path );
                         }
                     });

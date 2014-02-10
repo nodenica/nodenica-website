@@ -51,6 +51,31 @@ exports.singUp = function( to, subject, body, link ){
 }
 
 
+/**
+ *
+ * @param subject
+ * @param body
+ */
+
+exports.notify = function( to, subject, body, link ){
+
+    models.settings.findOne({key: 'site' }, 'value', function(err, obj){
+
+        var from = obj.value.title + ' <info@' + obj.value.domain + '>';
+
+        mailgun.sendRaw(from, to,
+            'From: ' + from +
+                '\nTo: ' + to.join(', ') +
+                '\nContent-Type: text/html; charset=utf-8' +
+                '\nSubject:' + subject +
+                '\n\n' + loadTemplate( 'notify', { header: subject, content: body, link: link } ),
+            callback);
+
+    });
+
+}
+
+
 
 /**
  *
