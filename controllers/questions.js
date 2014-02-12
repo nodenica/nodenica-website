@@ -84,6 +84,8 @@ exports.get = function( req, res ){
                     models.questions.findOne({ slug: req.params.slug },function(err,question){
                         if( !err && question ){
 
+                            question.title = S(question.title).left(53).s + '...';
+
                             question.date = moment(question.created_at).format('MMMM Do YYYY, h:mm:ss a');
 
                             if( question.responses.length > 0 ){

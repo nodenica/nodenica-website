@@ -94,6 +94,8 @@ exports.get = function( req, res ){
 
                         if( !err && post ){
 
+                            post.title = S(post.title).left(53).s + '...';
+
                             post.date = moment(post.created_at).format('MMMM Do YYYY, h:mm:ss a');
 
                             if( post.comments.length > 0 ){
