@@ -303,6 +303,10 @@ table tr td.center-top{
     background-color: #D6E9C6;
 }
 
+.panel-heading a:hover{
+    text-decoration: none;
+}
+
 .btn, .form-control, .singup{
     border-radius: 0;
 }
