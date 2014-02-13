@@ -87,7 +87,7 @@ exports.get = function( req, res ){
 
                         if( !err && post ){
 
-                            post.title = S(post.title).left(53).s + '...';
+                            post.title = helpers.util.parseTitle(post.title);
 
                             post.date = moment(post.created_at).format('MMMM Do YYYY, h:mm:ss a');
 
