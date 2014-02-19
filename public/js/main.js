@@ -33,19 +33,20 @@ var streaming = {
 
 var download = function(){
     (function(d,n) {
+        var nodeVersion = 'v0.10.26';
         var os = n.platform.match(/(Win|Mac|Linux)/);
         var x = n.userAgent.match(/x86_64|Win64|WOW64/) ||
             n.cpuClass === 'x64' ? 'x64' : 'x86';
-        var base = 'http://nodejs.org/dist/v0.10.25/';
-        var href = 'node-v0.10.25.tar.gz';
+        var base = 'http://nodejs.org/dist/'+nodeVersion+'/';
+        var href = 'node-'+nodeVersion+'.tar.gz';
         var db = d.getElementById('downloadbutton');
         var d2;
         switch (os && os[1]) {
             case 'Mac':
-                href = 'node-v0.10.25.pkg';
+                href = 'node-'+nodeVersion+'.pkg';
                 break;
             case 'Win':
-                href = 'node-v0.10.25-' + x + '.msi';
+                href = 'node-'+nodeVersion+'-' + x + '.msi';
                 if (x === 'x64') href = 'x64/' + href;
                 break;
         }
