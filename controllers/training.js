@@ -153,7 +153,7 @@ exports.get = function( req, res ){
                         permissions = true;
                     }
 
-                    res.render('template/training/article.jade',{ marked:marked, post: results.post, posts: results.posts, user: user, permissions: permissions });
+                    res.render('template/training/article.jade',{ marked: new helpers.marked.parse(marked), post: results.post, posts: results.posts, user: user, permissions: permissions });
 
                 }
                 else{

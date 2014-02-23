@@ -29,7 +29,7 @@ exports.home = function( req, res ){
                     i++;
                 });
 
-                res.render('template/blog/index.jade', { publisher: publisher, newPostUrl: newPostUrl, posts: posts, marked:marked });
+                res.render('template/blog/index.jade', { publisher: publisher, newPostUrl: newPostUrl, posts: posts, marked: new helpers.marked.parse(marked) });
             }
             else{
                 res.send('0 questions');
@@ -146,7 +146,7 @@ exports.get = function( req, res ){
                         permissions = true;
                     }
 
-                    res.render('template/blog/blog.jade',{ marked:marked, post: results.post, posts: results.posts, user: user, permissions: permissions });
+                    res.render('template/blog/blog.jade',{ marked: new helpers.marked.parse(marked) , post: results.post, posts: results.posts, user: user, permissions: permissions });
 
                 }
                 else{
