@@ -146,7 +146,7 @@ exports.get = function( req, res ){
                         permissions = true;
                     }
 
-                    res.render('template/blog/blog.jade',{ marked:marked, post: results.post, posts: results.posts, user: user, permissions: permissions });
+                    res.render('template/blog/blog.jade',{ marked: new helpers.marked.parse(marked) , post: results.post, posts: results.posts, user: user, permissions: permissions });
 
                 }
                 else{
