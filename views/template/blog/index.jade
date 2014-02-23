@@ -14,7 +14,7 @@ block content
                             span(class='glyphicon glyphicon-file')
                             span #{post.title}
                     div(class='panel-body max-post')
-                        != marked(post.content)
+                        != marked.parse(post.content)
                 div(class='form-group right')
                     a(href='/blog/#{post.slug}',target='_self',class='btn btn-success')
                         span(class='glyphicon glyphicon-arrow-right')

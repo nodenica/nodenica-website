@@ -14,7 +14,7 @@ block content
                             span #{lingua.actions.edit}
 
             div(class='panel-body')
-                != marked(question.content)
+                != marked.parse(question.content)
 
         div(class='panel panel-success')
             div(class='panel-heading')
@@ -31,7 +31,7 @@ block content
                                             td(class='author-picture')
                                                 img(src='#{response.author.avatar}',class='img-circle')
                                             td
-                                                != marked(response.content)
+                                                != marked.parse(response.content)
                             div(class='response-author')
                                 a(href='/user/#{response.author.username}',target='_self')
                                     span(class='glyphicon glyphicon-user')
