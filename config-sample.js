@@ -5,6 +5,9 @@ module.exports = {
     // language
     lang: 'es-ni',
 
+    // template
+    template: 'default',
+
     // secure salt
     secure: {
         password:{
