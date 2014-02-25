@@ -29,7 +29,7 @@ exports.home = function( req, res ){
                     i++;
                 });
 
-                res.render('template/blog/index.jade', { publisher: publisher, newPostUrl: newPostUrl, posts: posts, marked: new helpers.marked.parse(marked) });
+                res.render( helpers.site.template( 'blog/index' ), { publisher: publisher, newPostUrl: newPostUrl, posts: posts, marked: new helpers.marked.parse(marked) });
             }
             else{
                 res.send('0 questions');
@@ -146,11 +146,11 @@ exports.get = function( req, res ){
                         permissions = true;
                     }
 
-                    res.render('template/blog/blog.jade',{ marked: new helpers.marked.parse(marked) , post: results.post, posts: results.posts, user: user, permissions: permissions });
+                    res.render( helpers.site.template('blog/blog'), { marked: new helpers.marked.parse(marked) , post: results.post, posts: results.posts, user: user, permissions: permissions });
 
                 }
                 else{
-                    res.send('404');
+                    res.render( helpers.site.template( '404' ) );
                 }
 
             });
@@ -171,7 +171,7 @@ exports.create = function( req, res ){
 
         switch ( req.method ){
             case 'GET':
-                res.render('template/blog/create.jade',{ form: req.body });
+                res.render( helpers.site.template('blog/create'), { form: req.body });
                 break;
             case 'POST':
 
@@ -207,14 +207,14 @@ exports.create = function( req, res ){
                         if( post ){
 
                             error = res.lingua.content.questions.create.form.exist;
-                            res.render('template/blog/create.jade', { error: error, form: req.body });
+                            res.render( helpers.site.template('blog/create'), { error: error, form: req.body });
 
                         }
                         else{
 
                             if( error ){
 
-                                res.render('template/blog/create.jade', { error: error, form: req.body });
+                                res.render( helpers.site.template('blog/create'), { error: error, form: req.body });
 
                             }
                             else{
@@ -228,7 +228,7 @@ exports.create = function( req, res ){
 
                                 new_post.save(function( err ){
                                     if( err ){
-                                        res.render('template/blog/create.jade', { error: error, form: req.body });
+                                        res.render(helpers.site.template('blog/create'), { error: error, form: req.body });
                                     }
                                     else{
                                         var params = {};
@@ -277,7 +277,7 @@ exports.edit = function( req, res ){
                     if( !err && post ){
                         req.body.title = post.title;
                         req.body.content = post.content;
-                        res.render('template/blog/create.jade',{ form: req.body, mode: "edit" });
+                        res.render(helpers.site.template('blog/create'),{ form: req.body, mode: "edit" });
                     }
                     else{
                         res.redirect('/');
@@ -316,7 +316,7 @@ exports.edit = function( req, res ){
 
                             post.save(function( err ){
                                 if( err ){
-                                    res.render('template/blog/create.jade', { error: error, form: req.body });
+                                    res.render(helpers.site.template('blog/create'), { error: error, form: req.body });
                                 }
                                 else{
                                     res.redirect('/blog/'+req.params.slug);

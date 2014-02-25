@@ -27,7 +27,7 @@ exports.home = function( req, res ){
                     questions_parse.push(question);
                 });
 
-                res.render('template/question/index.jade', { newQuestionUrl: newQuestionUrl, questions: questions_parse });
+                res.render( helpers.site.template( 'question/index' ), { newQuestionUrl: newQuestionUrl, questions: questions_parse });
             }
             else{
                 res.send('0 questions');
@@ -143,11 +143,11 @@ exports.get = function( req, res ){
                         permissions = true;
                     }
 
-                    res.render('template/question/question.jade',{ marked: new helpers.marked.parse(marked), question: results.question, questions: results.questions, user: user, permissions: permissions });
+                    res.render(helpers.site.template( 'question/question' ),{ marked: new helpers.marked.parse(marked), question: results.question, questions: results.questions, user: user, permissions: permissions });
 
                 }
                 else{
-                    res.send('404');
+                    res.render( helpers.site.template( '404' ) );
                 }
 
         });
@@ -161,7 +161,7 @@ exports.create = function( req, res ){
 
     switch ( req.method ){
         case 'GET':
-            res.render('template/question/create.jade',{ form: req.body });
+            res.render(helpers.site.template( 'question/create' ),{ form: req.body });
             break;
         case 'POST':
 
@@ -199,14 +199,14 @@ exports.create = function( req, res ){
                     if( question ){
 
                         error = res.lingua.content.questions.create.form.exist;
-                        res.render('template/question/create.jade', { error: error, form: req.body });
+                        res.render(helpers.site.template( 'question/create' ), { error: error, form: req.body });
 
                     }
                     else{
 
                         if( error ){
 
-                            res.render('template/question/create.jade', { error: error, form: req.body });
+                            res.render(helpers.site.template( 'question/create' ), { error: error, form: req.body });
 
                         }
                         else{
@@ -220,7 +220,7 @@ exports.create = function( req, res ){
 
                             new_question.save(function( err ){
                                 if( err ){
-                                    res.render('template/question/create.jade', { error: error, form: req.body });
+                                    res.render(helpers.site.template( 'question/create' ), { error: error, form: req.body });
                                 }
                                 else{
                                     var params = {};
@@ -263,7 +263,7 @@ exports.edit = function( req, res ){
 
                         req.body.title = post.title;
                         req.body.content = post.content;
-                        res.render('template/question/create.jade',{ form: req.body, mode: "edit" });
+                        res.render(helpers.site.template( 'question/create' ),{ form: req.body, mode: "edit" });
 
                     }
                     else{
@@ -310,7 +310,7 @@ exports.edit = function( req, res ){
 
                             post.save(function( err ){
                                 if( err ){
-                                    res.render('template/question/create.jade', { error: error, form: req.body });
+                                    res.render(helpers.site.template( 'question/create' ), { error: error, form: req.body });
                                 }
                                 else{
                                     res.redirect('/questions/'+req.params.slug);
