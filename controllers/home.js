@@ -3,7 +3,7 @@ var marked = require('marked');
 var async = require('async');
 var moment = require('moment');
 var config = require('../config');
-var tweets = require('../helpers').tweets;
+var helpers = require( '../helpers' );
 
 moment.lang(config.lang);
 
@@ -61,17 +61,17 @@ exports.index = function (req, res) {
         if( results.tweets ){
             results.tweets.forEach(function(tweet){
                var new_tweet = tweet;
-                new_tweet.text = tweets.autoLink( tweet.text );
+                new_tweet.text = helpers.tweets.autoLink( tweet.text );
                 all_tweets.push(new_tweet);
             });
         }
 
-        res.render('template/index', { blog: results.blog, questions: results.questions, training: results.training, tweets: all_tweets });
+        res.render(helpers.site.template( 'index' ), { blog: results.blog, questions: results.questions, training: results.training, tweets: all_tweets });
 
     });
 
 }
 
 exports.notFound = function (req, res) {
-    res.render('error/404');
+    res.render( helpers.site.template( '404' ) );
 }

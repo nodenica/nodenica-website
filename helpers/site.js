@@ -1,5 +1,6 @@
 var models = require('../models');
 var path = require('path');
+var config = require('../config');
 
 exports.title = function (req, res, next) {
 
@@ -52,3 +53,9 @@ exports.isProduction = function(){
         return false;
     }
 }
+
+var template = function( sourceJadeFile ){
+    return 'template/' + config.template + '/' + sourceJadeFile;
+}
+
+exports.template = template;
