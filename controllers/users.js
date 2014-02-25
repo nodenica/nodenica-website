@@ -29,7 +29,7 @@ exports.get = function( req, res ){
                 });
             }
 
-            res.render( 'template/profile.jade', { marked:marked, profile: user } );
+            res.render( helpers.site.template( 'profile' ), { marked:marked, profile: user } );
 
         }
         else{
@@ -75,7 +75,7 @@ exports.signUp = function( req, res ){
 
     switch ( req.method ){
         case 'GET':
-            res.render('template/singup.jade', { error: error, focus: focus, form: req.body });
+            res.render(helpers.site.template( 'singup' ), { error: error, focus: focus, form: req.body });
             break;
         case 'POST':
             if( go ){
@@ -120,7 +120,7 @@ exports.signUp = function( req, res ){
 
                         if( err ){
                             error = err;
-                            res.render('template/singup.jade', { error: error, focus: focus, form: req.body });
+                            res.render(helpers.site.template( 'singup' ), { error: error, focus: focus, form: req.body });
                         }
                         else{
                             if( results.username && results.email ){
@@ -141,7 +141,7 @@ exports.signUp = function( req, res ){
 
                                     if( err ){
                                         error = err;
-                                        res.render('template/singup.jade', { error: error, focus: focus, form: req.body });
+                                        res.render(helpers.site.template( 'singup' ), { error: error, focus: focus, form: req.body });
                                     }
                                     else{
                                         var params = {};
@@ -161,7 +161,7 @@ exports.signUp = function( req, res ){
 
             }
             else{
-                res.render('template/singup.jade', { error: error, focus: focus, form: req.body });
+                res.render(helpers.site.template( 'singup' ), { error: error, focus: focus, form: req.body });
             }
 
             break;
@@ -181,7 +181,7 @@ exports.activateIndex = function( req, res ){
         res.redirect('/');
     }
 
-    res.render('template/activate.jade', { mode: 'default' });
+    res.render( helpers.site.template( 'activate' ), { mode: 'default' });
 }
 
 
@@ -202,13 +202,13 @@ exports.activateAction = function( req, res ){
 
             models.users.findOne({ active_token: req.params.id }, function(err, user){
                 if( err ){
-                    res.render('template/activate.jade', { mode: 'action', error: err });
+                    res.render(helpers.site.template( 'activate' ), { mode: 'action', error: err });
                 }
                 else{
                     if( user ){
                         models.users.findByIdAndUpdate(user.id, { active: true }, function(err, thank){
                             if( err ){
-                                res.render('template/activate.jade', { mode: 'action', error: err });
+                                res.render(helpers.site.template( 'activate' ), { mode: 'action', error: err });
                             }
                             else{
                                 res.redirect('/user/login?a=1');
@@ -250,7 +250,7 @@ exports.login = function( req, res ){
 
     switch ( req.method ){
         case 'GET':
-            res.render('template/login.jade', { form: req.body });
+            res.render(helpers.site.template( 'login' ), { form: req.body });
             break;
         case 'POST':
 
@@ -263,7 +263,7 @@ exports.login = function( req, res ){
                     if( user ){
 
                         if( !user.active ){
-                            res.render('template/login.jade', { form: req.body, error: vsprintf(res.lingua.content.login.error.user_active,[req.body.username]) });
+                            res.render(helpers.site.template( 'login' ), { form: req.body, error: vsprintf(res.lingua.content.login.error.user_active,[req.body.username]) });
                         }
                         else{
                             req.session.user = user;
@@ -272,7 +272,7 @@ exports.login = function( req, res ){
 
                     }
                     else{
-                        res.render('template/login.jade', { form: req.body, error: res.lingua.content.login.error.incorrect_data });
+                        res.render(helpers.site.template( 'login' ), { form: req.body, error: res.lingua.content.login.error.incorrect_data });
                     }
                 }
             });
@@ -317,12 +317,12 @@ exports.forgot = function( req, res ){
 
     switch ( req.method ){
         case 'GET':
-            res.render('template/forgot.jade', { form: req.body });
+            res.render(helpers.site.template( 'forgot' ), { form: req.body });
             break;
         case 'POST':
 
             if( req.body.email === '' ){
-                res.render('template/forgot.jade', { form: req.body, error: res.lingua.content.login.forgot.error.empty });
+                res.render(helpers.site.template( 'forgot' ), { form: req.body, error: res.lingua.content.login.forgot.error.empty });
             }
             else{
 
@@ -339,10 +339,10 @@ exports.forgot = function( req, res ){
 
                             helpers.email.link( settings );
 
-                            res.render('template/forgot.jade', { sent: res.lingua.content.login.forgot.sent });
+                            res.render(helpers.site.template( 'forgot' ), { sent: res.lingua.content.login.forgot.sent });
                         }
                         else{
-                            res.render('template/forgot.jade', { form: req.body, error: vsprintf(res.lingua.content.login.forgot.error.email,[req.body.email]) });
+                            res.render(helpers.site.template( 'forgot' ), { form: req.body, error: vsprintf(res.lingua.content.login.forgot.error.email,[req.body.email]) });
                         }
                     }
                 });
@@ -366,25 +366,25 @@ exports.reset = function( req, res ){
 
     models.users.findOne({ forgot_token: req.params.forgot_token  } , function(err,user){
         if( err ){
-            res.render('template/reset.jade', { form: req.body, error: err });
+            res.render(helpers.site.template( 'reset' ), { form: req.body, error: err });
         }
         else{
             if( user ){
                 switch ( req.method ){
                     case 'GET':
-                        res.render('template/reset.jade', { form: req.body });
+                        res.render(helpers.site.template( 'reset' ), { form: req.body });
                         break;
                     case 'POST':
 
                         if( req.body.password === '' ){
-                            res.render('template/reset.jade', { form: req.body, error: res.lingua.content.login.reset.error.empty });
+                            res.render(helpers.site.template( 'reset' ), { form: req.body, error: res.lingua.content.login.reset.error.empty });
                         }
                         else{
                             user.password = helpers.users.passwordHash( req.body.password );
                             user.forgot_token = helpers.users.makeToken( user._id + new Date().toLocaleDateString );
                             user.save(function(err){
                                 if( err ){
-                                    res.render('template/reset.jade', { form: req.body, error: err });
+                                    res.render(helpers.site.template( 'reset' ), { form: req.body, error: err });
                                 }
                                 else{
 
@@ -397,7 +397,7 @@ exports.reset = function( req, res ){
 
                                     helpers.email.link( settings );
 
-                                    res.render('template/reset.jade', { form: req.body, reset: res.lingua.content.login.reset.success });
+                                    res.render(helpers.site.template( 'reset' ), { form: req.body, reset: res.lingua.content.login.reset.success });
                                 }
                             })
 
