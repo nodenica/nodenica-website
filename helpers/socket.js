@@ -1,3 +1,6 @@
+var cookie = require('cookie');
+var connect = require('connect');
+
 /**
  * Socket io middleware
  *
