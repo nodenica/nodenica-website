@@ -68,7 +68,7 @@
         },
         "email":{
             "subject": "Bienvenido %s",
-            "body": "Ahora sólo tienes que visitar el siguiente enlace para activar su cuenta:"
+            "body": "Ahora sólo tienes que visitar el siguiente enlace para activar tu cuenta:"
         },
         "activate": {
             "message": "Usted debe tener un nuevo mensaje en su bandeja de entrada con un enlace para activar su cuenta.",
