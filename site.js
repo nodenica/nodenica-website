@@ -1,58 +1,30 @@
 var express = require('express');
+var MongoStore = require('connect-mongo')(express);
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
-var cookie  =   require('cookie')
-var connect =   require('connect');
 var lingua  = require('lingua');
 var models = require('./models');
 var routes = require('./routes');
 var config = require('./config');
-var site = require('./helpers').site;
-var pid = require('./helpers').pid;
-var email = require('./helpers').email;
-var tweets = require('./helpers').tweets;
-var socket = require('./helpers').socket;
-var util = require('util');
-var redis = require('redis');
-var redisDb = redis.createClient();
-var RedisStore = require('connect-redis')(express);
+var helpers = require('./helpers');
 
-var socketio = new socket.use( io );
+
+var socketio = new helpers.socket.use( io );
 
 // send data to newrelic
-if( site.isProduction() ){
+if( helpers.site.isProduction() ){
     require('newrelic');
 }
 
 // handle hashtag and store
-tweets.enable(socketio);
+helpers.tweets.enable(socketio);
 
-
+// Socket settings
 io.set('log level', 1);
-
-io.set('authorization', function (handshakeData, accept) {
-
-    if (handshakeData.headers.cookie) {
-
-        handshakeData.cookie = cookie.parse(handshakeData.headers.cookie);
-
-        handshakeData.sessionID = connect.utils.parseSignedCookie(handshakeData.cookie['express.sid'], 'secret');
-
-        if (handshakeData.cookie['express.sid'] == handshakeData.sessionID) {
-            return accept('Cookie is invalid.', false);
-        }
-
-    } else {
-        return accept('No cookie transmitted.', false);
-    }
-
-    accept(null, true);
-});
+io.set('authorization', helpers.socket.authorization);
 
 server.listen( config.port );
-
-var express = require('express');
 
 // set view directory
 app.set('views', __dirname + '/views');
@@ -69,13 +41,13 @@ app.use(express.urlencoded());
 // Set cookie parser
 app.use(express.cookieParser());
 app.use(express.session({
-    store: new RedisStore({
-        host: 'localhost',
-        port: 6379,
-        db: 2
+    secret: config.express.secret,
+    store: new MongoStore({
+        db: config.mongodb.db
     }),
-    secret: '023197422617bce43335cbd3c675aeed',
-    key: 'express.sid' }));
+    key: 'express.sid'
+}));
+
 
 // Set public directory
 app.use(express.static(__dirname + '/public'));
@@ -86,58 +58,17 @@ app.use(lingua(app, {
     path: __dirname + '/i18n'
 }));
 
-app.use(site.title);
+// Site middleware
+app.use(helpers.site.express);
 
-app.use(site.url);
-
-app.use(socket.express(socketio));
-
-// Users online
-app.use(function(req, res, next){
-    var ua = req.headers['user-agent'];
-    redisDb.zadd('online', Date.now(), ua, next);
-});
-
-app.use(function(req, res, next){
-    var min = 60 * 1000;
-    var ago = Date.now() - min;
-    redisDb.zrevrangebyscore('online', '+inf', ago, function(err, users){
-        if (err) return next(err);
-        req.online = users;
-        res.locals.online = util.format(res.lingua.content.home.online.content, req.online.length);
-        next();
-    });
-});
-
+// socketio middleware
+app.use(helpers.socket.express(socketio));
 
 // Validate installation
-app.use(function(req, res, next){
+app.use( helpers.install );
 
-    res.locals.user = req.session.user;
+// PID
+helpers.pid.make();
 
-    if( req.url != '/install' ){
-
-        models.users.count({}, function(err, c){
-            if( err ){
-                res.render('install/index.jade', {error: err});
-            }
-            else{
-                if( c === 0 ){
-                    res.redirect('/install');
-                }
-                else{
-                    next();
-                }
-            }
-        });
-
-    }
-    else{
-        next();
-    }
-
-});
-
-pid.make();
-
+// Routes
 routes.setup( app );
