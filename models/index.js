@@ -8,7 +8,7 @@ var fs = require( 'fs' );
 var path = require( 'path' );
 var config = require( '../config' );
 var mongoose = require('mongoose');
-var db = mongoose.createConnection( config.mongodb.url );
+var db = mongoose.createConnection( config.mongodb.url + config.mongodb.db );
 
 var files = fs.readdirSync( __dirname );
 
