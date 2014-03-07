@@ -2,21 +2,55 @@ var models = require('../models');
 var path = require('path');
 var config = require('../config');
 
+/**
+ * Obtain site settings
+ *
+ * @param callback
+ */
+var get = function(callback){
+    models.settings.findOne({key: 'site' }, 'value', function(err, data){
+        if( err ){
+            console.log( err );
+            callback( null );
+        }
+        else{
+            callback( data.value );
+        }
+    });
+}
+
+exports.get = get;
+
+/**
+ * Create middleware to title
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
 exports.title = function (req, res, next) {
 
-    models.settings.findOne({key: 'site' }, 'value', function(err, obj){
+    get(function( site ){
 
         res.locals.title = res.lingua.content.install.title;
 
-        if( !err && obj ){
-            res.locals.title = obj.value.title;
+        if( site ){
+            res.locals.title = site.title;
         }
 
         next();
+
     });
 
 }
 
+/**
+ * URL middleware
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
 exports.url = function(req, res, next){
     var hostname = req.headers.host;
     var port = '';
@@ -26,13 +60,16 @@ exports.url = function(req, res, next){
             port = ":" + req.headers.host.split( ":")[1];
         }
     }
-
     res.locals.siteUrl = req.protocol + '://' + hostname + port;
-
     next();
-
 }
 
+
+/**
+ * Set environment
+ *
+ * @returns {string}
+ */
 var environment = function(){
     switch ( path.resolve(__dirname, '../' ) ){
         case '/sites/Node-Community':
@@ -45,6 +82,12 @@ var environment = function(){
 
 exports.environment = environment();
 
+
+/**
+ * Check if environment is production
+ *
+ * @returns {boolean}
+ */
 exports.isProduction = function(){
     if( environment() === 'production' ){
         return true;
@@ -54,6 +97,12 @@ exports.isProduction = function(){
     }
 }
 
+/**
+ * Return site template folder
+ *
+ * @param sourceJadeFile
+ * @returns {string}
+ */
 var template = function( sourceJadeFile ){
     return 'template/' + config.template + '/' + sourceJadeFile;
 }
