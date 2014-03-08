@@ -527,8 +527,11 @@ pre{
     background-color: #46483E;
 }
 
-
 .baby-node{
     width: 16px;
     margin-right: 10px;
+}
+
+.caret{
+    margin-left: 10px;
 }
