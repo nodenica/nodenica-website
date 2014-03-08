@@ -1,79 +1,40 @@
-var Mailgun = require('mailgun').Mailgun;
+var email = require("emailjs");
 var fs = require('fs');
 var path = require('path');
 var config = require( '../config' );
 var models = require('../models');
+var site = require('./site');
 var S = require('string');
 
-var mailgun = new Mailgun( config.mailgun.api.key );
+var send = function( settings ){
 
-/**
- *
- * @param subject
- * @param body
- */
+    site.get(function(site){
 
-exports.alert = function( subject, body ){
+        var server  = email.server.connect( config.smtp );
 
-    mailgun.sendRaw(config.email.alert.sender, config.email.alert.receivers,
-        'From: ' + config.email.alert.sender +
-            '\nTo: ' + config.email.alert.receivers.join(', ') +
-            '\nContent-Type: text/html; charset=utf-8' +
-            '\nSubject:' + subject +
-            '\n\n' + loadTemplate( 'alert', { header: subject, content: body } ),
-            callback);
+        var from = site.title + ' <info@' + site.domain + '>';
 
-}
+        var message = {
+            text:    settings.text + '\n\n' + site.title,
+            from:    from,
+            to:      settings.to,
+            subject: settings.subject
+        };
 
-
-/**
- *
- * @param subject
- * @param body
- */
-
-exports.singUp = function( to, subject, body, link ){
-
-    models.settings.findOne({key: 'site' }, 'value', function(err, obj){
-
-        var from = obj.value.title + ' <info@' + obj.value.domain + '>';
-
-        mailgun.sendRaw(from, to,
-            'From: ' + from +
-                '\nTo: ' + to.join(', ') +
-                '\nContent-Type: text/html; charset=utf-8' +
-                '\nSubject:' + subject +
-                '\n\n' + loadTemplate( 'singup', { header: subject, content: body, link: link } ),
-            callback);
+        server.send(message, function(err, message) {
+            //console.log(err || message);
+        });
 
     });
 
 }
 
+exports.send = send;
 
-/**
- *
- * @param subject
- * @param body
- */
+//send( { text: 'Hola mundo', to: 'paulomcnally@gmail.com', subject: 'Test message' } );
 
-exports.notify = function( to, subject, body, link ){
 
-    models.settings.findOne({key: 'site' }, 'value', function(err, obj){
 
-        var from = obj.value.title + ' <info@' + obj.value.domain + '>';
-
-        mailgun.sendRaw(from, to,
-            'From: ' + from +
-                '\nTo: ' + to.join(', ') +
-                '\nContent-Type: text/html; charset=utf-8' +
-                '\nSubject:' + subject +
-                '\n\n' + loadTemplate( 'notify', { header: subject, content: body, link: link } ),
-            callback);
-
-    });
-
-}
 
 
 

@@ -19,7 +19,7 @@ var get = function(callback){
     });
 }
 
-exports.get = get;
+module.exports.get = get;
 
 /**
  * Create middleware to title
@@ -28,8 +28,21 @@ exports.get = get;
  * @param res
  * @param next
  */
-exports.title = function (req, res, next) {
+exports.express = function (req, res, next) {
 
+    // URL
+    var hostname = req.headers.host;
+    var port = '';
+    if( hostname.match(/:/g) ){
+        if( req.headers.host.split( ":")[1] != 80 || req.headers.host.split( ":")[1] != 443  ){
+            hostname = req.headers.host.slice( 0, req.headers.host.indexOf(":") );
+            port = ":" + req.headers.host.split( ":")[1];
+        }
+    }
+    res.locals.siteUrl = req.protocol + '://' + hostname + port;
+
+
+    // Title
     get(function( site ){
 
         res.locals.title = res.lingua.content.install.title;
@@ -43,27 +56,6 @@ exports.title = function (req, res, next) {
     });
 
 }
-
-/**
- * URL middleware
- *
- * @param req
- * @param res
- * @param next
- */
-exports.url = function(req, res, next){
-    var hostname = req.headers.host;
-    var port = '';
-    if( hostname.match(/:/g) ){
-        if( req.headers.host.split( ":")[1] != 80 || req.headers.host.split( ":")[1] != 443  ){
-            hostname = req.headers.host.slice( 0, req.headers.host.indexOf(":") );
-            port = ":" + req.headers.host.split( ":")[1];
-        }
-    }
-    res.locals.siteUrl = req.protocol + '://' + hostname + port;
-    next();
-}
-
 
 /**
  * Set environment

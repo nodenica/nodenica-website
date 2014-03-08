@@ -341,15 +341,15 @@ exports.forgot = function( req, res ){
                     if( !err ){
                         if( user ){
 
-                            var settings = {};
-                            settings.subject = res.lingua.content.login.forgot.subject;
-                            settings.greeting = vsprintf( res.lingua.content.login.forgot.greeting, [user.name] );
-                            settings.body = res.lingua.content.login.forgot.body;
-                            settings.href = res.locals.siteUrl + '/user/reset/' + user.forgot_token;
-                            settings.to = [user.name +' <' + user.email + '>'];
+                            // Send email
+                            var email = {
+                                text: util.format( res.lingua.content.login.forgot.body, res.locals.siteUrl + '/user/reset/' + user.forgot_token ),
+                                to: user.name +' <' + user.email + '>',
+                                subject: res.lingua.content.login.forgot.subject
+                            }
+                            helpers.email.send( email );
 
-                            helpers.email.link( settings );
-
+                            // Load view
                             res.render(helpers.site.template( 'forgot' ), { sent: res.lingua.content.login.forgot.sent });
                         }
                         else{
@@ -399,15 +399,15 @@ exports.reset = function( req, res ){
                                 }
                                 else{
 
-                                    var settings = {};
-                                    settings.subject = res.lingua.content.login.reset.subject;
-                                    settings.greeting = vsprintf( res.lingua.content.login.reset.greeting, [user.name] );
-                                    settings.body = res.lingua.content.login.reset.body;
-                                    settings.href = res.locals.siteUrl + '/user/login';
-                                    settings.to = [user.name +' <' + user.email + '>'];
+                                    // Send email
+                                    var email = {
+                                        text: util.format( res.lingua.content.login.reset.body, res.locals.siteUrl + '/user/login' ),
+                                        to: user.name +' <' + user.email + '>',
+                                        subject: res.lingua.content.login.reset.subject
+                                    }
+                                    helpers.email.send( email );
 
-                                    helpers.email.link( settings );
-
+                                    // Load view
                                     res.render(helpers.site.template( 'reset' ), { form: req.body, reset: res.lingua.content.login.reset.success });
                                 }
                             })

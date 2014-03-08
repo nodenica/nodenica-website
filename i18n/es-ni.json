@@ -40,7 +40,7 @@
             "sent": "Revise su correo electrónico, hemos enviado un enlace para crear una contraseña nueva.",
             "subject": "Restablecer contraseña",
             "greeting": "Saludos %s",
-            "body": "Haga clic en siguiente enlace para restablecer tu contraseña:"
+            "body": "Haga clic en siguiente enlace para restablecer tu contraseña:\n\n%s"
         },
         "reset": {
             "title": "Restablecer contraseña",
@@ -48,10 +48,10 @@
             "error": {
                 "empty": "Escriba una contraseña"
             },
-            "success": "Su contraseña ha sido sustituido con éxito.",
+            "success": "Su contraseña ha sido sustituida con éxito.",
             "subject": "Contraseña cambiada",
             "greeting": "Saludos %s",
-            "body": "Su contraseña ha sido cambiada. Iniciar sesión en el siguiente enlace:"
+            "body": "Su contraseña ha sido cambiada.\n\nPuedes iniciar sesión en el enlace siguiente:\n\n%s"
         }
     },
     "sing_up": {
