@@ -1,11 +1,19 @@
+var cheerio = require('cheerio');
+
 module.exports.parse = function( md ){
 
     var self = this;
 
     self.parse = function( text ){
         text = self.youtube( text );
-        self.html = md( text );
+        self.html = self.imgResponsive( md( text ) );
         return self.html;
+    }
+
+    self.imgResponsive = function( html ){
+        $ = cheerio.load(html);
+        $('img').addClass('img-responsive');
+        return $.html();
     }
 
     self.youtube = function( text ){
