@@ -48,6 +48,7 @@ exports.express = function (req, res, next) {
         res.locals.title = res.lingua.content.install.title;
 
         if( site ){
+            res.locals.siteTitle = site.title
             res.locals.title = site.title;
         }
 

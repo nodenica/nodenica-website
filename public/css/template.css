@@ -22,34 +22,7 @@ header{
     padding-right: 0;
     min-height: 45px;
     position: relative;
-    background: #46483E;
-}
-
-header .header-left{
-    float: left;
-}
-
-header .header-left a.logo{
-    width: 258px;
-    height: 45px;
-    line-height: 45;
-    float: left;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: url('/img/logo-header.png');
-
-    margin-right: 20px;
-}
-
-header .header-left a.logo:hover{
-    background: #46483E;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: url('/img/logo-header.png');
-}
-
-header .header-right{
-    float: right;
+    background: #303030;
 }
 
 .dropdown-menu>li>a.picture{
@@ -75,31 +48,36 @@ header .header-right{
     height: 80px;
 }
 
-header .header-right a, header .header-left a{
-    height: 45px;
-    line-height: 45px;
-    padding: 0 10px;
-    color: #ffffff;
-    float: left;
-    font-weight: bold;
-    text-transform:uppercase;
+@media(min-width:992px){
 
-    -webkit-transition: background-color .4s ease-out;
-    -moz-transition: background-color .4s ease-out;
-    -ms-transition: background-color .4s ease-out;
-    -o-transition: background-color .4s ease-out;
-    -o-transition: background-color .4s ease-out;
-    -ms-transition: background-color .4s ease-out;
-    -moz-transition: background-color .4s ease-out;
-    -webkit-transition: background-color .4s ease-out;
-    transition: background-color .4s ease-out;
+header .header-right a, header .header-left a, .page{
+    height: 45px !important;
+    line-height: 45px !important;
+    padding: 0 10px !important;
+    color: #ffffff !important;
+    float: left !important;
+    font-weight: bold !important;
+    text-transform:uppercase !important;
+
+    -webkit-transition: background-color .4s ease-out !important;
+    -moz-transition: background-color .4s ease-out !important;
+    -ms-transition: background-color .4s ease-out !important;
+    -o-transition: background-color .4s ease-out !important;
+    -o-transition: background-color .4s ease-out !important;
+    -ms-transition: background-color .4s ease-out !important;
+    -moz-transition: background-color .4s ease-out !important;
+    -webkit-transition: background-color .4s ease-out !important;
+    transition: background-color .4s ease-out !important;
 }
 
-header .header-right a:hover, header .header-left a:hover,header .header-left a.selected, header .header-right a.selected{
-    text-decoration: none;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.6);
-    color: rgb(140, 200, 75);
+
+header .header-right a:hover, header .header-left a:hover,header .header-left a.selected, header .header-right a.selected, .page:hover{
+    text-decoration: none !important;
+    background: rgb(0, 0, 0) !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    color: rgb(140, 200, 75) !important;
+}
+
 }
 
 header .header-right a:focus,header .header-left a:focus{
@@ -517,4 +495,43 @@ pre{
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.navbar{
+    background-color: #303030;
+}
+
+.navbar{
+    border: 0;
+    margin-bottom: 0 !important;
+
+}
+
+.navbar-nav li a{
+    color: #80BD01 !important;
+}
+
+.navbar-nav li a:hover{
+    text-decoration: underline;
+}
+
+.navbar-brand{
+    color: #80BD01 !important;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{
+    background-color: #303030;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{
+    background-color: #46483E;
+}
+
+.baby-node{
+    width: 16px;
+    margin-right: 10px;
+}
+
+.caret{
+    margin-left: 10px;
 }
