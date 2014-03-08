@@ -99,4 +99,8 @@ var template = function( sourceJadeFile ){
     return 'template/' + config.template + '/' + sourceJadeFile;
 }
 
+exports.setTitle = function( title, res ){
+    return title + ' - ' + res.locals.title;
+}
+
 exports.template = template;
