@@ -68,7 +68,7 @@
         },
         "email":{
             "subject": "Bienvenido %s",
-            "body": "Ahora sólo tienes que visitar el siguiente enlace para activar tu cuenta:\n\n%s"
+            "body": "Felicitaciones por registrarte. Como nuevo miembro de la comunidad te invitamos a colaborar respondiendo las preguntas o preguntando. También tenemos algúnos artículos interesantes para que puedas aprender un poco más sobre NodeJS.\n\nAhora sólo tienes que visitar el siguiente enlace para activar tu cuenta:\n\n%s"
         },
         "activate": {
             "message": "Usted debe tener un nuevo mensaje en su bandeja de entrada con un enlace para activar su cuenta.",
