@@ -55,16 +55,24 @@ exports.get = function( req, res ){
                 question.responses.push( response );
                 question.save(function(err){
                     if( !err ){
-                        var params = {};
-                        params.name = req.session.user.name;
-                        params.username = req.session.user.username;
-                        params.slug = req.params.slug;
-                        params.title = question.title;
-                        helpers.users.addActivity('new_question_reply', params, req.socketio);
+                        // Add activity
+                        var activity = {
+                            name: req.session.user.name,
+                            username: req.session.user.username,
+                            slug: req.params.slug,
+                            title: question.title
+                        }
+                        helpers.users.addActivity('new_question_reply', activity, req.socketio);
 
-                        // email notify author
-                        helpers.email.notify([ question.author.username + '<' + question.author.email + '>' ], util.format(res.lingua.content.notify.response.subject, question.title), util.format(res.lingua.content.notify.response.body, question.title), res.locals.siteUrl + '/questions/' + question.slug );
+                        // Send email
+                        var email = {
+                            text: util.format( res.lingua.content.notify.response.body, question.title, res.locals.siteUrl + '/questions/' + question.slug ),
+                            to: question.author.username + '<' + question.author.email + '>',
+                            subject: util.format( res.lingua.content.notify.response.subject, question.title )
+                        }
+                        helpers.email.send( email );
 
+                        // Redirect
                         res.redirect( req.path );
                     }
                 });

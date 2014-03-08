@@ -59,16 +59,24 @@ exports.get = function( req, res ){
                     post.comments.push( comment );
                     post.save(function(err){
                         if( !err ){
-                            var params = {};
-                            params.name = req.session.user.name;
-                            params.username = req.session.user.username;
-                            params.slug = req.params.slug;
-                            params.title = post.title;
-                            helpers.users.addActivity('new_training_comment', params, req.socketio);
+                            // Add activity
+                            var activity = {
+                                name: req.session.user.name,
+                                username: req.session.user.username,
+                                slug: req.params.slug,
+                                title: post.title
+                            };
+                            helpers.users.addActivity('new_training_comment', activity, req.socketio);
 
-                            // email notify author
-                            helpers.email.notify([ post.author.username + '<' + post.author.email + '>' ], util.format(res.lingua.content.notify.comment.subject, post.title), util.format(res.lingua.content.notify.comment.body, post.title), res.locals.siteUrl + '/training/' + post.slug );
+                            // Send email
+                            var email = {
+                                text: util.format( res.lingua.content.notify.comment.body, post.title, res.locals.siteUrl + '/training/' + post.slug ),
+                                to: post.author.username + '<' + post.author.email + '>',
+                                subject: util.format( res.lingua.content.notify.comment.subject, post.title )
+                            }
+                            helpers.email.send( email );
 
+                            // Redirect
                             res.redirect( req.path );
                         }
                     });
