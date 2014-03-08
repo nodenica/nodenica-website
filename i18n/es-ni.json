@@ -40,7 +40,7 @@
             "sent": "Revise su correo electrónico, hemos enviado un enlace para crear una contraseña nueva.",
             "subject": "Restablecer contraseña",
             "greeting": "Saludos %s",
-            "body": "Haga clic en siguiente enlace para restablecer tu contraseña:"
+            "body": "Haga clic en siguiente enlace para restablecer tu contraseña:\n\n%s"
         },
         "reset": {
             "title": "Restablecer contraseña",
@@ -48,10 +48,10 @@
             "error": {
                 "empty": "Escriba una contraseña"
             },
-            "success": "Su contraseña ha sido sustituido con éxito.",
+            "success": "Su contraseña ha sido cambiada con éxito.",
             "subject": "Contraseña cambiada",
             "greeting": "Saludos %s",
-            "body": "Su contraseña ha sido cambiada. Iniciar sesión en el siguiente enlace:"
+            "body": "Su contraseña ha sido cambiada.\n\nPuedes iniciar sesión en el enlace siguiente:\n\n%s"
         }
     },
     "sing_up": {
@@ -68,7 +68,7 @@
         },
         "email":{
             "subject": "Bienvenido %s",
-            "body": "Ahora sólo tienes que visitar el siguiente enlace para activar su cuenta:"
+            "body": "Felicitaciones por registrarte. Como nuevo miembro de la comunidad te invitamos a colaborar respondiendo las preguntas o preguntando. También tenemos algúnos artículos interesantes para que puedas aprender un poco más sobre NodeJS.\n\nAhora sólo tienes que visitar el siguiente enlace para activar tu cuenta:\n\n%s"
         },
         "activate": {
             "message": "Usted debe tener un nuevo mensaje en su bandeja de entrada con un enlace para activar su cuenta.",
@@ -262,11 +262,11 @@
     "notify":{
         "comment":{
             "subject": "Nuevos comentarios en: %s",
-            "body": "Para ver los nuevos comentarios publicados en %s accede al enlace siguiente:"
+            "body": "Para ver los nuevos comentarios publicados en %s accede al enlace siguiente:\n\n%s"
         },
         "response":{
             "subject": "Nueva respuesta en: %s",
-            "body": "Para ver las nuevas respuestas publicadas en %s accede al enlace siguiente:"
+            "body": "Para ver las nuevas respuestas publicadas en %s accede al enlace siguiente:\n\n%s"
         }
     }
 }

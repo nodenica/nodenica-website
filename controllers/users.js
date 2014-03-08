@@ -5,6 +5,7 @@ var marked = require( 'marked' );
 var async = require('async');
 var vsprintf = require("sprintf-js").vsprintf;
 var mongoose = require('mongoose');
+var util = require('util');
 var moment = require('moment');
 moment.lang( config.lang );
 
@@ -144,12 +145,22 @@ exports.signUp = function( req, res ){
                                         res.render(helpers.site.template( 'singup' ), { error: error, focus: focus, form: req.body });
                                     }
                                     else{
-                                        var params = {};
-                                        params.name = newUser.name;
-                                        params.username = newUser.username;
-                                        helpers.users.addActivity('new_user', params, req.socketio);
+                                        // Add activity
+                                        var activity = {
+                                            name: newUser.name,
+                                            username: newUser.username
+                                        }
+                                        helpers.users.addActivity('new_user', activity, req.socketio);
 
-                                        helpers.email.singUp([ helpers.users.nameFormat( req.body.first_name, req.body.last_name ) + '<' + req.body.email + '>' ], vsprintf(res.lingua.content.sing_up.email.subject,[helpers.users.nameFormat( req.body.first_name, req.body.last_name )]), res.lingua.content.sing_up.email.body, res.locals.siteUrl + '/user/activate/' + newUser.active_token );
+                                        // Send email
+                                        var email = {
+                                            text: util.format( res.lingua.content.sing_up.email.subject, helpers.users.nameFormat( req.body.first_name, req.body.last_name ) ) + '\n\n' + util.format( res.lingua.content.sing_up.email.body, res.locals.siteUrl + '/user/activate/' + newUser.active_token ),
+                                            to: helpers.users.nameFormat( req.body.first_name, req.body.last_name ) + '<' + req.body.email + '>',
+                                            subject: util.format( res.lingua.content.sing_up.email.subject, helpers.users.nameFormat( req.body.first_name, req.body.last_name ) )
+                                        }
+                                        helpers.email.send( email );
+
+                                        // Redirect to activate page
                                         res.redirect('/user/activate');
                                     }
 
@@ -330,15 +341,15 @@ exports.forgot = function( req, res ){
                     if( !err ){
                         if( user ){
 
-                            var settings = {};
-                            settings.subject = res.lingua.content.login.forgot.subject;
-                            settings.greeting = vsprintf( res.lingua.content.login.forgot.greeting, [user.name] );
-                            settings.body = res.lingua.content.login.forgot.body;
-                            settings.href = res.locals.siteUrl + '/user/reset/' + user.forgot_token;
-                            settings.to = [user.name +' <' + user.email + '>'];
+                            // Send email
+                            var email = {
+                                text: util.format( res.lingua.content.login.forgot.body, res.locals.siteUrl + '/user/reset/' + user.forgot_token ),
+                                to: user.name +' <' + user.email + '>',
+                                subject: res.lingua.content.login.forgot.subject
+                            }
+                            helpers.email.send( email );
 
-                            helpers.email.link( settings );
-
+                            // Load view
                             res.render(helpers.site.template( 'forgot' ), { sent: res.lingua.content.login.forgot.sent });
                         }
                         else{
@@ -388,15 +399,15 @@ exports.reset = function( req, res ){
                                 }
                                 else{
 
-                                    var settings = {};
-                                    settings.subject = res.lingua.content.login.reset.subject;
-                                    settings.greeting = vsprintf( res.lingua.content.login.reset.greeting, [user.name] );
-                                    settings.body = res.lingua.content.login.reset.body;
-                                    settings.href = res.locals.siteUrl + '/user/login';
-                                    settings.to = [user.name +' <' + user.email + '>'];
+                                    // Send email
+                                    var email = {
+                                        text: util.format( res.lingua.content.login.reset.body, res.locals.siteUrl + '/user/login' ),
+                                        to: user.name +' <' + user.email + '>',
+                                        subject: res.lingua.content.login.reset.subject
+                                    }
+                                    helpers.email.send( email );
 
-                                    helpers.email.link( settings );
-
+                                    // Load view
                                     res.render(helpers.site.template( 'reset' ), { form: req.body, reset: res.lingua.content.login.reset.success });
                                 }
                             })

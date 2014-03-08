@@ -1,3 +1,11 @@
+var cookie = require('cookie');
+var connect = require('connect');
+
+/**
+ * Socket io middleware
+ *
+ * @param _io
+ */
 exports.use = function(_io){
 
     var self = this;
@@ -16,13 +24,43 @@ exports.use = function(_io){
 
 }
 
+/**
+ * Express middleware
+ *
+ * @param io
+ * @returns {socket}
+ */
 exports.express = function( io ){
-
-    //console.log( io );
 
     return function socket(req, res, next) {
         req.socketio = io;
         next();
     }
 
+}
+
+/**
+ * Authorization
+ *
+ * @param handshakeData
+ * @param accept
+ * @returns {*}
+ */
+exports.authorization = function (handshakeData, accept) {
+
+    if (handshakeData.headers.cookie) {
+
+        handshakeData.cookie = cookie.parse(handshakeData.headers.cookie);
+
+        handshakeData.sessionID = connect.utils.parseSignedCookie(handshakeData.cookie['express.sid'], 'secret');
+
+        if (handshakeData.cookie['express.sid'] == handshakeData.sessionID) {
+            return accept('Cookie is invalid.', false);
+        }
+
+    } else {
+        return accept('No cookie transmitted.', false);
+    }
+
+    accept(null, true);
 }
