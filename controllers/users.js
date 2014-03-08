@@ -30,13 +30,14 @@ exports.get = function( req, res ){
                 });
             }
 
+            res.locals.title = helpers.site.setTitle( user.name, res );
+
             res.render( helpers.site.template( 'profile' ), { marked:marked, profile: user } );
 
         }
         else{
             res.redirect('/');
         }
-
 
     });
 

@@ -161,6 +161,8 @@ exports.get = function( req, res ){
                         permissions = true;
                     }
 
+                    res.locals.title = helpers.site.setTitle( results.post.title, res );
+
                     res.render(helpers.site.template( 'training/article' ),{ marked: new helpers.marked.parse(marked), post: results.post, posts: results.posts, user: user, permissions: permissions });
 
                 }
