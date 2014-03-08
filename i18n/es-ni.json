@@ -48,7 +48,7 @@
             "error": {
                 "empty": "Escriba una contraseña"
             },
-            "success": "Su contraseña ha sido sustituida con éxito.",
+            "success": "Su contraseña ha sido cambiada con éxito.",
             "subject": "Contraseña cambiada",
             "greeting": "Saludos %s",
             "body": "Su contraseña ha sido cambiada.\n\nPuedes iniciar sesión en el enlace siguiente:\n\n%s"
