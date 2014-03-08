@@ -262,11 +262,11 @@
     "notify":{
         "comment":{
             "subject": "Nuevos comentarios en: %s",
-            "body": "Para ver los nuevos comentarios publicados en %s accede al enlace siguiente:"
+            "body": "Para ver los nuevos comentarios publicados en %s accede al enlace siguiente:\n\n%s"
         },
         "response":{
             "subject": "Nueva respuesta en: %s",
-            "body": "Para ver las nuevas respuestas publicadas en %s accede al enlace siguiente:"
+            "body": "Para ver las nuevas respuestas publicadas en %s accede al enlace siguiente:\n\n%s"
         }
     }
 }
