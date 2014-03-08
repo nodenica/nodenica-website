@@ -5,6 +5,7 @@ var marked = require( 'marked' );
 var async = require('async');
 var vsprintf = require("sprintf-js").vsprintf;
 var mongoose = require('mongoose');
+var util = require('util');
 var moment = require('moment');
 moment.lang( config.lang );
 
@@ -144,12 +145,22 @@ exports.signUp = function( req, res ){
                                         res.render(helpers.site.template( 'singup' ), { error: error, focus: focus, form: req.body });
                                     }
                                     else{
-                                        var params = {};
-                                        params.name = newUser.name;
-                                        params.username = newUser.username;
-                                        helpers.users.addActivity('new_user', params, req.socketio);
+                                        // Add activity
+                                        var activity = {
+                                            name: newUser.name,
+                                            username: newUser.username
+                                        }
+                                        helpers.users.addActivity('new_user', activity, req.socketio);
 
-                                        helpers.email.singUp([ helpers.users.nameFormat( req.body.first_name, req.body.last_name ) + '<' + req.body.email + '>' ], vsprintf(res.lingua.content.sing_up.email.subject,[helpers.users.nameFormat( req.body.first_name, req.body.last_name )]), res.lingua.content.sing_up.email.body, res.locals.siteUrl + '/user/activate/' + newUser.active_token );
+                                        // Send email
+                                        var email = {
+                                            text: util.format( res.lingua.content.sing_up.email.subject, helpers.users.nameFormat( req.body.first_name, req.body.last_name ) ) + '\n\n' + util.format( res.lingua.content.sing_up.email.body, res.locals.siteUrl + '/user/activate/' + newUser.active_token ),
+                                            to: helpers.users.nameFormat( req.body.first_name, req.body.last_name ) + '<' + req.body.email + '>',
+                                            subject: util.format( res.lingua.content.sing_up.email.subject, helpers.users.nameFormat( req.body.first_name, req.body.last_name ) )
+                                        }
+                                        helpers.email.send( email );
+
+                                        // Redirect to activate page
                                         res.redirect('/user/activate');
                                     }
 
