@@ -21,6 +21,20 @@ var get = function(callback){
 
 module.exports.get = get;
 
+var admins = function( callback ){
+    models.users.find({range: 1 }, 'name email', function(err, users){
+        if( err ){
+            console.log( err );
+            callback( null );
+        }
+        else{
+            callback( users );
+        }
+    });
+}
+
+module.exports.admins = admins;
+
 /**
  * Create middleware to title
  *
