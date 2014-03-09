@@ -44,7 +44,7 @@ app.use(express.session({
     store: new MongoStore({
         db: config.mongodb.db
     }),
-    key: 'express.sid'
+    key: config.express.key
 }));
 
 
