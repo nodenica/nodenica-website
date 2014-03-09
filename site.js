@@ -9,6 +9,9 @@ var routes = require('./routes');
 var config = require('./config');
 var helpers = require('./helpers');
 
+// Process handler
+helpers.process.init();
+
 var socketio = new helpers.socket.use( io );
 
 // send data to newrelic
