@@ -5,45 +5,38 @@ module.exports = {
     // language
     lang: 'es-ni',
 
-    // template
-    template: 'default',
-
     // secure salt
     secure: {
-        password:{
-            hash: 'type hash here'
+        password: {
+            hash: ''
         }
     },
+
+    // Template
+    template: 'default',
 
     // expressjs settings
     express: {
         // use on express.session
-        secret: 'type hash here'
+        secret: '',
+        key: ''
 
     },
 
-    // mongodb settings
     mongodb: {
-        url: 'mongodb://127.0.0.1/nodenica'
+        url: '',
+        db: ''
     },
 
-    mailgun: {
-        api: {
-            key: 'type yout key',
-            public: 'type your public key'
-        }
-
-    },
-
-    email:{
-        alert: {
-            sender: 'Your site name <alerts@youtdomain.com>',
-            receivers: ['Yout Name <yourname@email.com>']
-        }
+    smtp: {
+        user: '',
+        password: '',
+        host: 'smtp.gmail.com',
+        ssl: true
     },
 
     twitter:{
-        hashtag: "#hashtag",
+        hashtag: "",
         twit: {
             consumer_key: '',
             consumer_secret: '',
