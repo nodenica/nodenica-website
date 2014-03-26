@@ -1,6 +1,6 @@
 {
   "name": "Node-Community",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "dependencies": {
     "express": "3.4.7",
     "jade": "1.0.0",
@@ -20,6 +20,7 @@
     "slug": "0.4.0",
     "emailjs": "~0.3.6",
     "connect-mongo": "~0.4.0",
-    "cheerio": "~0.13.1"
+    "cheerio": "~0.13.1",
+    "raven": "~0.6.2"
   }
 }

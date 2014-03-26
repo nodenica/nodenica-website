@@ -1,6 +1,7 @@
 var email = require("emailjs");
 var config = require( '../config' );
 var site = require('./site');
+var log = require('./log');
 
 /**
  * Send a email (plain/text)
@@ -24,7 +25,12 @@ var send = function( settings ){
         };
 
         server.send(message, function(err, message) {
-            //console.log(err || message);
+            if( err ){
+                log.error( err );
+            }
+            else{
+                log.message( message );
+            }
         });
 
     });

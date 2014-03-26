@@ -4,6 +4,7 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var lingua  = require('lingua');
+var raven = require('raven');
 var models = require('./models');
 var routes = require('./routes');
 var config = require('./config');
@@ -68,6 +69,8 @@ app.use(helpers.socket.express(socketio));
 
 // Validate installation
 app.use( helpers.install );
+
+app.use(raven.middleware.express( config.log.url ));
 
 // PID
 helpers.pid.make();

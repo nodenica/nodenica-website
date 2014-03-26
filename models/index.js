@@ -8,7 +8,18 @@ var fs = require( 'fs' );
 var path = require( 'path' );
 var config = require( '../config' );
 var mongoose = require('mongoose');
+var helpers = require('../helpers');
+
 var db = mongoose.createConnection( config.mongodb.url + config.mongodb.db );
+
+db.on('error', function () {
+    helpers.log.error( arguments[0] );
+});
+
+db.on('open', function () {
+    helpers.log.message( 'Database connected' );
+});
+
 
 var files = fs.readdirSync( __dirname );
 
