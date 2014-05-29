@@ -3,8 +3,14 @@ var cookie = require('cookie'),
     ConnectSession = require('connect').middleware.session.Session,
     config = require('../config');
 var helpers = require('../helpers');
-var express = require('express');
-var MongoStore = require('connect-mongo')(express);
+
+var mongoStore;
+
+exports.setStore = function( store ){
+
+    mongoStore = store;
+
+}
 
 /**
  * Socket io middleware
@@ -78,13 +84,7 @@ exports.authorization = function (handshake, accept) {
         //			(useful for scenarios with volatile messages, e.g. analytics)
 
         // Get session
-        new MongoStore({
-            host: config.mongodb.host,
-            port: config.mongodb.port,
-            db: config.mongodb.db,
-            username: config.mongodb.username,
-            password: config.mongodb.password
-        }).get(handshake.sessionID, function (err, session) {
+        mongoStore.get(handshake.sessionID, function (err, session) {
 
             // An error occurred, so refuse the connection
             if (err) {

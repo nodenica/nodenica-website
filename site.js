@@ -1,14 +1,28 @@
-var express = require('express');
-var MongoStore = require('connect-mongo')(express);
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
-var lingua  = require('lingua');
-var raven = require('raven');
-var models = require('./models');
-var routes = require('./routes');
-var config = require('./config');
-var helpers = require('./helpers');
+var express         = require('express');
+var cookieParser    = require('cookie-parser');
+var session         = require('express-session');
+var bodyParser      = require('body-parser')
+var MongoStore      = require('connect-mongo')(session);
+var app             = express();
+var server          = require('http').createServer(app);
+var io              = require('socket.io').listen(server);
+var lingua          = require('lingua');
+var raven           = require('raven');
+var models          = require('./models');
+var routes          = require('./routes');
+var config          = require('./config');
+var helpers         = require('./helpers');
+
+// Session store
+var store = new MongoStore({
+    host: config.mongodb.host,
+    port: config.mongodb.port,
+    db: config.mongodb.db,
+    username: config.mongodb.username,
+    password: config.mongodb.password
+});
+
+helpers.socket.setStore( store );
 
 // Process handler
 helpers.process.init();
@@ -35,23 +49,11 @@ app.set('views', __dirname + '/views');
 // set view engine
 app.set('view engine', 'jade');
 
-// Set json parser
-app.use(express.json());
-
-// Set urlencoded
-app.use(express.urlencoded());
-
-// Set cookie parser
-app.use(express.cookieParser());
-app.use(express.session({
+app.use(bodyParser());
+app.use(cookieParser());
+app.use(session({
     secret: config.express.secret,
-    store: new MongoStore({
-        host: config.mongodb.host,
-        port: config.mongodb.port,
-        db: config.mongodb.db,
-        username: config.mongodb.username,
-        password: config.mongodb.password
-    }),
+    store: store,
     key: config.express.key
 }));
 
