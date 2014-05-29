@@ -9,8 +9,11 @@ var path = require( 'path' );
 var config = require( '../config' );
 var mongoose = require('mongoose');
 var helpers = require('../helpers');
+var util = require('util');
 
-var db = mongoose.createConnection( config.mongodb.url + config.mongodb.db );
+var url = util.format( 'mongodb://%s:%s@%s:%s/%s', config.mongodb.username, config.mongodb.password, config.mongodb.host, config.mongodb.port, config.mongodb.db );
+
+var db = mongoose.createConnection( url );
 
 db.on('error', function () {
     helpers.log.error( arguments[0] );

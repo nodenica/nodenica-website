@@ -79,7 +79,11 @@ exports.authorization = function (handshake, accept) {
 
         // Get session
         new MongoStore({
-            db: config.mongodb.db
+            host: config.mongodb.host,
+            port: config.mongodb.port,
+            db: config.mongodb.db,
+            username: config.mongodb.username,
+            password: config.mongodb.password
         }).get(handshake.sessionID, function (err, session) {
 
             // An error occurred, so refuse the connection
