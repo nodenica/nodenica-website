@@ -34,9 +34,6 @@ if( helpers.site.isProduction() ){
     require('newrelic');
 }
 
-// handle hashtag and store
-helpers.tweets.enable(socketio);
-
 // Socket settings
 io.set('log level', 1);
 io.set('authorization', helpers.socket.authorization);
