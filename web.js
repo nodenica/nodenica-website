@@ -46,7 +46,7 @@ app.set('views', __dirname + '/views');
 // set view engine
 app.set('view engine', 'jade');
 
-app.use(bodyParser());
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({
     secret: config.express.secret,
