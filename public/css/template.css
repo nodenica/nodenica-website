@@ -296,6 +296,11 @@ table tr td.center-top{
     text-decoration: none;
 }
 
+.panel-body{
+    position: relative;
+    overflow: hidden;
+}
+
 
 .btn, .form-control, .singup{
     border-radius: 0;
