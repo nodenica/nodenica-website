@@ -1,17 +1,30 @@
 module.exports = {
-    // port to load web site
+    /**
+     * Port
+     */
     port: process.env.PORT || 5000,
 
-    // language
+    /**
+     * Language
+     * https://www.npmjs.org/package/lingua
+     */
     lang: 'es-ni',
 
-    // secure salt
+    /**
+     * Salt
+     * http://en.wikipedia.org/wiki/Salt_(cryptography)
+     */
     salt: process.env.SALT || '',
 
-    // Template
+    /**
+     * Template
+     */
     template: 'default',
 
-    // expressjs settings
+    /**
+     * ExpressJS settings
+     * http://expressjs.com/guide.html
+     */
     express: {
         // use on express.session
         secret: process.env.SECRET || '',
@@ -19,8 +32,10 @@ module.exports = {
 
     },
 
-    // MongoDB Connection
-    // https://www.mongohq.com/signup/
+    /**
+     * MongoDB Connection
+     * https://www.mongohq.com/signup/
+     */
     mongodb: {
         host: process.env.MONGODB_HOST || '',
         port: process.env.MONGODB_PORT || '',
@@ -29,8 +44,10 @@ module.exports = {
         password: process.env.MONGODB_PASSWORD || ''
     },
 
-    // SMTP emails
-    // http://www.gmail.com
+    /**
+     * SMTP emails
+     * http://www.gmail.com
+     */
     smtp: {
         user: process.env.SMTP_USERNAME || '',
         password: process.env.SMTP_PASSWORD || '',
@@ -38,8 +55,10 @@ module.exports = {
         ssl: true
     },
 
-    // Log
-    // https://www.getsentry.com/register/
+    /**
+     * Log
+     * https://www.getsentry.com/register/
+     */
     log: {
         url: process.env.LOG_URL || ''
     }
