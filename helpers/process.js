@@ -19,7 +19,6 @@ exports.init = function(){
             }
         });
 
-
     });
 
 }
