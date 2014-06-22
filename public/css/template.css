@@ -115,8 +115,8 @@ ul.dropdown-menu li a{
 footer{
     background: #F9F9F9;
     border-top: 1px solid #F5F5F5;
-    min-height: 42px;
-    line-height: 42px;
+    min-height: 70px;
+    line-height: 70px;
     text-align: center;
 }
 
@@ -458,11 +458,6 @@ pre{
 .home-button{
     width: 100%;
     text-align: center;
-}
-
-.stream-box{
-    height: 475px;
-    overflow-y: scroll;
 }
 
 .tweet-box{
