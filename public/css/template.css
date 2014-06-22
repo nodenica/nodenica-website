@@ -262,6 +262,10 @@ table tr td.center-top{
     border: 0;
 }
 
+.panel-heading a{
+    color: #3c763d;
+}
+
 .panel-heading img{
     width: 20px;
     height: 20px;
