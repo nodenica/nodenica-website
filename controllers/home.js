@@ -41,11 +41,31 @@ exports.index = function (req, res) {
                     callback(null, null);
                 }
             });
+        },
+        streaming: function (callback) {
+            var q = models.streaming.find({}).sort({'created_at': -1}).limit(15);
+            q.exec(function (err, rows) {
+                if (!err && rows) {
+
+                    var output = [];
+
+                    rows.forEach(function(item){
+
+                        output.push( marked( item.activity + ' ' + moment( item.created_at ).fromNow() )  );
+
+                    });
+
+                    callback(null, output);
+                }
+                else {
+                    callback(null, null);
+                }
+            });
         }
     },
     function (err, results) {
 
-        res.render(helpers.site.template( 'index' ), { blog: results.blog, questions: results.questions, training: results.training });
+        res.render(helpers.site.template( 'index' ), { blog: results.blog, questions: results.questions, training: results.training, streaming: results.streaming });
 
     });
 
