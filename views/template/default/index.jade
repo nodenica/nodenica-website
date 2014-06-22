@@ -7,8 +7,9 @@ block content
             div(class='panel-body unspace')
                 table(class='table table-hover table-striped')
                     tbody(id='streamingBody')
-    script.
-        streaming.ajax();
+                        each item in streaming
+                            tr
+                                td #{item}
 
     div(class='col-md-4')
         div(class='panel panel-success')
