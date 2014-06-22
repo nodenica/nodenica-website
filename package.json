@@ -1,6 +1,8 @@
 {
   "name": "Node-Community",
   "version": "0.0.28",
+  "description": "Sistema de gestión de contenidos para comunidades NodeJS.",
+  "main": "web.js",
   "dependencies": {
     "async": "0.2.9",
     "body-parser": "^1.2.2",
@@ -25,5 +27,8 @@
     "sprintf-js": "0.0.7",
     "string": "1.7.0",
     "twit": "1.1.12"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
