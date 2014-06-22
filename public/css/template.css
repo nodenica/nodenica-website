@@ -115,8 +115,8 @@ ul.dropdown-menu li a{
 footer{
     background: #F9F9F9;
     border-top: 1px solid #F5F5F5;
-    min-height: 42px;
-    line-height: 42px;
+    min-height: 70px;
+    line-height: 70px;
     text-align: center;
 }
 
@@ -262,6 +262,17 @@ table tr td.center-top{
     border: 0;
 }
 
+.right-align{
+    float: right;
+    z-index: 1000;
+}
+
+.panel-heading a{
+    color: #3c763d;
+    float: left;
+    position: absolute;
+}
+
 .panel-heading img{
     width: 20px;
     height: 20px;
@@ -285,6 +296,10 @@ table tr td.center-top{
     text-decoration: none;
 }
 
+.panel-body{
+    position: relative;
+}
+
 
 .btn, .form-control, .singup{
     border-radius: 0;
@@ -297,9 +312,6 @@ ul.custom{
     padding: 0;
 }
 
-.right-align{
-    float: right;
-}
 
 #epiceditor{
     height:  330px;
@@ -455,14 +467,32 @@ pre{
     min-height: 370px;
 }
 
+.home-box-middle-container{
+    margin: 20px 0 40px 0;
+}
+
+.home-box-middle{
+    min-height: 200px;
+    background-color: #edfee6;
+    text-align: center;
+    padding: 30px;
+}
+
+.home-box-middle:hover{
+    background-color: #dff0d8;
+}
+
+.home-box-middle h3{
+    color: #3c763d;
+}
+
+.home-box-middle p{
+    margin-top: 10px;
+}
+
 .home-button{
     width: 100%;
     text-align: center;
-}
-
-.stream-box{
-    height: 475px;
-    overflow-y: scroll;
 }
 
 .tweet-box{
@@ -528,4 +558,32 @@ pre{
 
 .caret{
     margin-left: 10px;
+}
+
+/*TILT*/
+.tilt {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.tilt:hover {
+    -webkit-transform: rotate(-10deg);
+    -moz-transform: rotate(-10deg);
+    -o-transform: rotate(-10deg);
+    -ms-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+}
+
+.signup-left-box{
+    padding-top: 30px;
+    text-align: center;
+}
+
+
+.signup-left-box ul{
+    text-align: left;
+    margin-top: 20px;
 }

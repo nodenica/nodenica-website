@@ -22,7 +22,7 @@ var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
 exports.passwordHash = function( password ){
 
     // create a md5 from string password and hash
-    var passwordHash = crypto.createHash('md5').update( password + '_' + config.secure.password.hash ).digest('hex');
+    var passwordHash = crypto.createHash('md5').update( password + '_' + config.salt ).digest('hex');
 
     return passwordHash;
 
@@ -135,7 +135,7 @@ exports.makeToken = function( str ){
         string += chars.substring(randomNumber, randomNumber + 1);
     }
 
-    return crypto.createHash('md5').update( str + '_' + string + '_' + config.secure.password.hash ).digest('hex');
+    return crypto.createHash('md5').update( str + '_' + string + '_' + config.salt ).digest('hex');
 }
 
 exports.getAvatar = function( email ){

@@ -251,13 +251,12 @@
         "remove": "Remover"
     },
     "home":{
-        "download": "NodeJS 0.10.26",
-        "install": "Instalar",
-        "online":{
-            "title": "Usuarios conectados",
-            "content": "Usuarios conectados: %d"
-        },
-        "hashtag": "#nodenica"
+        "download": "Descarga",
+        "download_text": "Descarga la versión más reciente de NodeJS",
+        "doc": "Documentación",
+        "doc_text": "Documentación Offline de NodeJS para Android",
+        "modules": "NPM",
+        "modules_text": "Más de 79 589 módulos gratis en www.npmjs.org"
     },
     "notify":{
         "comment":{

@@ -1,37 +1,35 @@
 extend layout
 block content
 
-    div(class='col-md-4')
-        div(class='panel panel-success')
-            div(class='panel-heading')
-                span #{lingua.home.download}
-            div(class='panel-body ')
-                a(href="",class="btn btn-success home-button",id="downloadbutton") #{lingua.home.install}
-
-        div(class='panel panel-success')
-            div(class='panel-heading')
-                span #{lingua.home.hashtag}
-            div(class='panel-body unspace tweets tweet-box')
-                if( tweets.length > 0 )
-                    table(class='table table-hover table-striped',width='100%',cellspacing='0',cellpadding='10')
-                        each item in tweets
-                            tr
-                                td
-                                    strong
-                                        a(href='https://twitter.com/#{item.screen_name}',target='_blank') #{item.screen_name}
-                                    | : !{item.text} &nbsp;
-                                    a(href='https://twitter.com/#{item.screen_name}/status/#{item.id_str}',target='_blank') Abrir
-
-
-    div(class='col-md-8')
+    div(class='col-md-12')
         div(class='panel panel-success')
             div(class='panel-heading') #{lingua.streaming.title}
-            div(class='panel-body unspace stream-box')
+            div(class='panel-body unspace')
                 table(class='table table-hover table-striped')
                     tbody(id='streamingBody')
-    script.
-        streaming.ajax();
-        download();
+                        each item in streaming
+                            tr
+                                td !{item}
+
+    div(class='col-md-12 home-box-middle-container')
+        div(class='col-md-4')
+            div(class='col-md-12 home-box-middle')
+                h3 #{lingua.home.doc}
+                a(href='https://play.google.com/store/apps/details?id=com.mc.nad', target='_blank')
+                    img(src='/img/ic_android.png', class='tilt', width='72', height='72')
+                p #{lingua.home.doc_text}
+        div(class='col-md-4')
+            div(class='col-md-12 home-box-middle')
+                h3 #{lingua.home.download}
+                a(href='http://nodejs.org/download/', target='_blank')
+                    img(src='/img/baby-node.svg', class='tilt', width='72', height='72')
+                p #{lingua.home.download_text}
+        div(class='col-md-4')
+            div(class='col-md-12 home-box-middle')
+                h3 #{lingua.home.modules}
+                a(href='https://www.npmjs.org/', target='_blank')
+                    img(src='/img/ic_modules.png', class='tilt', height='72')
+                p #{lingua.home.modules_text}
 
     div(class='col-md-4')
         div(class='panel panel-success')

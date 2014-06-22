@@ -34,9 +34,6 @@ if( helpers.site.isProduction() ){
     require('newrelic');
 }
 
-// handle hashtag and store
-helpers.tweets.enable(socketio);
-
 // Socket settings
 io.set('log level', 1);
 io.set('authorization', helpers.socket.authorization);
@@ -49,7 +46,10 @@ app.set('views', __dirname + '/views');
 // set view engine
 app.set('view engine', 'jade');
 
-app.use(bodyParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(cookieParser());
 app.use(session({
     secret: config.express.secret,
