@@ -262,8 +262,15 @@ table tr td.center-top{
     border: 0;
 }
 
+.right-align{
+    float: right;
+    z-index: 1000;
+}
+
 .panel-heading a{
     color: #3c763d;
+    float: left;
+    position: absolute;
 }
 
 .panel-heading img{
@@ -301,9 +308,6 @@ ul.custom{
     padding: 0;
 }
 
-.right-align{
-    float: right;
-}
 
 #epiceditor{
     height:  330px;
