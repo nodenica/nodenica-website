@@ -1,6 +1,6 @@
 {
   "name": "Node-Community",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sistema de gestión de contenidos para comunidades NodeJS.",
   "main": "web.js",
   "dependencies": {
