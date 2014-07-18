@@ -9,6 +9,7 @@ body{
 
 h1,h2,h3,h4,h5,h6{
     margin: 10px 0;
+    font-family: 'Bitter',Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;
 }
 
 header{
@@ -260,6 +261,7 @@ table tr td.center-top{
     border-radius: 0;
     font-size: 22px;
     border: 0;
+    font-family: 'Bitter',Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;
 }
 
 .right-align{
@@ -299,6 +301,10 @@ table tr td.center-top{
 .panel-body{
     position: relative;
 }
+
+.panel-body p,ul,td{
+    font-family: 'Raleway',Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;
+};
 
 
 .btn, .form-control, .singup{
@@ -488,6 +494,7 @@ pre{
 
 .home-box-middle p{
     margin-top: 10px;
+    font-family: 'Raleway',Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;
 }
 
 .home-button{
@@ -541,6 +548,7 @@ pre{
 
 .navbar-brand{
     color: #80BD01 !important;
+    font-family: 'Bitter', Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;
 }
 
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{
