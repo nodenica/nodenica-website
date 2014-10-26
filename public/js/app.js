@@ -1,20 +1,20 @@
 require.config({
 	paths: {
-		jquery:              '../bower_components/jquery/dist/jquery',
-		underscore:          '../bower_components/underscore/underscore',
-		bootstrapAffix:      '../bower_components/sass-bootstrap/js/affix',
-		bootstrapAlert:      '../bower_components/sass-bootstrap/js/alert',
-		bootstrapButton:     '../bower_components/sass-bootstrap/js/button',
-		bootstrapCarousel:   '../bower_components/sass-bootstrap/js/carousel',
-		bootstrapCollapse:   '../bower_components/sass-bootstrap/js/collapse',
-		bootstrapDropdown:   '../bower_components/sass-bootstrap/js/dropdown',
-		bootstrapModal:      '../bower_components/sass-bootstrap/js/modal',
-		bootstrapPopover:    '../bower_components/sass-bootstrap/js/popover',
-		bootstrapScrollspy:  '../bower_components/sass-bootstrap/js/scrollspy',
-		bootstrapTab:        '../bower_components/sass-bootstrap/js/tab',
-		bootstrapTooltip:    '../bower_components/sass-bootstrap/js/tooltip',
-		bootstrapTransition: '../bower_components/sass-bootstrap/js/transition',
-		jqueryVimeoEmbed:    '../bower_components/jquery-smart-vimeo-embed/jquery-smartvimeoembed'
+		jquery:              '../components/jquery/dist/jquery',
+		underscore:          '../components/underscore/underscore',
+		bootstrapAffix:      '../components/sass-bootstrap/js/affix',
+		bootstrapAlert:      '../components/sass-bootstrap/js/alert',
+		bootstrapButton:     '../components/sass-bootstrap/js/button',
+		bootstrapCarousel:   '../components/sass-bootstrap/js/carousel',
+		bootstrapCollapse:   '../components/sass-bootstrap/js/collapse',
+		bootstrapDropdown:   '../components/sass-bootstrap/js/dropdown',
+		bootstrapModal:      '../components/sass-bootstrap/js/modal',
+		bootstrapPopover:    '../components/sass-bootstrap/js/popover',
+		bootstrapScrollspy:  '../components/sass-bootstrap/js/scrollspy',
+		bootstrapTab:        '../components/sass-bootstrap/js/tab',
+		bootstrapTooltip:    '../components/sass-bootstrap/js/tooltip',
+		bootstrapTransition: '../components/sass-bootstrap/js/transition',
+		jqueryVimeoEmbed:    '../components/jquery-smart-vimeo-embed/jquery-smartvimeoembed'
 	},
 	shim: {
 		bootstrapAffix: {

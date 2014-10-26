@@ -1,5 +1,55 @@
 {>"layouts/master" /}
 
 {<body}
-    <h1>{@pre type="content" key="greeting"/}</h1>
+<!-- Post with quote -->
+<div class="boxed  push-down-45">
+  <!-- Featured image and meta start -->
+  <div class="meta">
+    <img class="wp-post-image" src="http://netdna.webdesignerdepot.com/uploads/2012/11/code.jpg" alt="Blog image" width="748" height="324">
+    <q class="meta__quote">
+      In order to succeed, your desire for success should be greater than your fear of failure.
+    </q>
+    <div class="meta__container">
+      <div class="row">
+        <div class="col-xs-12  col-sm-8">
+          <div class="meta__info">
+            <span class="meta__author">
+              <img src="https://es.gravatar.com/userimage/4247000/dbf36663a67dc51598a6594be50ad084.jpeg" alt="Meta avatar" width="30" height="30">
+              <a href="#">Paulo McNally</a> in <a href="#">Blog</a>
+            </span>
+            <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; 6. May, 2014</span>
+          </div>
+        </div>
+        <div class="col-xs-12  col-sm-4">
+          <div class="meta__comments">
+            <span class="glyphicon glyphicon-comment"></span> &nbsp; <a href="single-post.html#disqus_thread">10</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Featured image and meta end -->
+  <!-- Start of the blogpost -->
+  <div class="row">
+    <div class="col-xs-10  col-xs-offset-1">
+      <!-- Start of the content -->
+      <div class="post-content--front-page">
+        <h2 class="front-page-title">
+          <a href="/blog/post-01">Title</a>
+        </h2>
+        <h3>Short Description</h3>
+        <p>Content</p>
+      </div>
+      <!-- End of the content -->
+      <a href="single-post.html">
+        <div class="read-more">
+          Continuar leyendo
+          <div class="read-more__arrow">
+            <span class="glyphicon  glyphicon-chevron-right"></span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
 {/body}

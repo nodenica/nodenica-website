@@ -1,14 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>{+title /}</title>
-    <link rel="stylesheet" href="/css/app.css" />
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="ProteusThemes">
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  <title>{+title /}</title>
+
+  <!-- Custom styles for this template -->
+  <!-- build:css stylesheets/main.css -->
+  <link href="css/main.css" rel="stylesheet">
+  <!-- endbuild -->
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Fonts -->
+  <script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Open+Sans:300,400,700:latin', 'Lato:700,900:latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+    '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })();
+  </script>
 </head>
 <body>
-<div id="wrapper" class="content">
-    {+body /}
-</div>
-<script data-main="/js/app" src="/components/requirejs/require.js"></script>
+  {>"layouts/header" /}
+  {>"layouts/search" /}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12  col-md-8">
+        {+body /}
+      </div>
+      <div class="col-xs-12  col-md-4">
+        {>"layouts/widget-app-android" /}
+        {>"layouts/sidebar" /}
+      </div>
+
+    </div>
+  </div>
+  {>"layouts/footer" /}
+  <script data-main="/js/app" src="/components/requirejs/require.js"></script>
 </body>
 </html>
