@@ -1,0 +1,13 @@
+<!-- Search - Open panel -->
+<div class="search-panel">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <form action="/search">
+          <input type="text" class="search-panel__form  js--search-panel-text" placeholder="Escriba lo que busca">
+          <p class="search-panel__text">Presione enter para ver los resultados o esc para cancelar.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

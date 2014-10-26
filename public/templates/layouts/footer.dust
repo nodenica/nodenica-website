@@ -1,0 +1,65 @@
+<footer class="footer">
+  <div class="container">
+    <div class="col-xs-12  col-md-3">
+      <div class="widget-about  push-down-30">
+        <img src="/images/logo.png" alt="Logo" width="176" height="70"><br/>
+        <span class="footer__text">Sitio web de la Comunidad de Desarrolladores node.js en Nicaragua</span>
+        <br/><br/>
+        <div class="social-icons  widget-social-icons">
+          <a href="https://facebook.com/nodenica" target="_blank" class="social-icons__container"><span class="zocial-facebook"></span></a>
+          <a href="https://twitter.com/nodenica" target="_blank" class="social-icons__container"><span class="zocial-twitter"></span></a>
+          <a href="https://github.com/nodenica" target="_blank" class="social-icons__container"><span class="zocial-github"></span></a>
+          <!--<a href="#" class="social-icons__container"><span class="zocial-youtube"></span></a>-->
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12  col-md-3">
+      <div class="tags  widget-tags">
+        <h6>Tags</h6>
+        <hr>
+        <a href="#" class="tags__link">LoopBackJS</a>
+        <a href="#" class="tags__link">node</a>
+        <a href="#" class="tags__link">KrakenJS</a>
+        <a href="#" class="tags__link">Hangout</a>
+        <a href="#" class="tags__link">ExpressJS</a>
+      </div>
+    </div>
+    <div class="col-xs-12  col-md-3">
+      <nav class="widget-navigation  push-down-30">
+        <h6>Navegación</h6>
+        <hr>
+        <ul class="navigation">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/questions">Preguntas</a></li>
+          <li><a href="/training">Entrenamiento</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-xs-12  col-md-3">
+      <div class="widget-contact  push-down-30">
+        <h6>Contacto</h6>
+        <hr>
+        <span class="widget-contact__text">
+          <span class="widget-contact__title">NodeNica.</span><br>
+          +505 82406543,<br />
+          nodenica@gmail.com
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+<footer class="copyrights">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12  col-sm-6">
+        <a href="http://themeforest.net/item/readable-blog-template-focused-on-readability/7499064?ref=ProteusThemes" target="_blank">Readable</a> HTML Template © Copyright 2014.
+      </div>
+      <div class="col-xs-12  col-sm-6">
+        <div class="copyrights--right">
+          Made by <a href="http://proteusthemes.com" target="_blank">ProteusThemes</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

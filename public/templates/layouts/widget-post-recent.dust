@@ -1,0 +1,23 @@
+<!-- Widget posts -->
+<div class="widget-posts  push-down-30">
+  <!-- Nav tabs -->
+  <ul class="nav  nav-tabs">
+    <li class="active"><a href="#recent-posts" data-toggle="tab"><span class="glyphicon  glyphicon-time"></span> &nbsp;Recientes</a></li>
+    <li><a href="#popular-posts" data-toggle="tab"><span class="glyphicon  glyphicon-flash"></span> &nbsp;Populares</a></li>
+  </ul>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane  fade  in  active" id="recent-posts">
+      <div class="push-down-15">
+        <h5><a href="single-post.html">This is a showcase of the most recent posts</a></h5>
+        <span class="widget-posts__time">19 hours ago</span>
+      </div>
+    </div>
+    <div class="tab-pane  fade" id="popular-posts">
+      <div class="push-down-15">
+        <h5><a href="single-post.html">This is a showcase of the most popular posts</a></h5>
+        <span class="widget-posts__time">9 hours ago</span>
+      </div>
+    </div>
+  </div>
+</div>
