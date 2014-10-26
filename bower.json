@@ -1,0 +1,35 @@
+{
+  "name": "nodenica-website",
+  "main": "index.js",
+  "version": "0.0.15",
+  "homepage": "https://github.com/nodenica/nodenica-website",
+  "authors": [
+    "Paulo McNally <paulomcnally@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "dustjs-linkedin-helpers": "~1.2.0",
+    "dustjs-linkedin": "~2.3.0",
+    "requirejs": "^2.1.11",
+    "almond": "~0.3.0",
+    "jquery": "~2.1.1",
+    "sass-bootstrap": "~3.0.2",
+    "underscore": "~1.7.0",
+    "jquery-smart-vimeo-embed": "~1.1.1"
+  }
+}
