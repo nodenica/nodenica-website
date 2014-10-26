@@ -1,4 +1,3 @@
-Node-Community
-==============
+# nodenica-website
 
-Sistema de gestión de contenidos para comunidades NodeJS
+N

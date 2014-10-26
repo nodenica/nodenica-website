@@ -1,18 +1,18 @@
-/**
- * @description Read all files and make export for file
- *              ignoring index file.
- * @type {exports}
- */
+'use strict';
 
-var fs = require( 'fs' );
-var path = require( 'path' );
 
-var files = fs.readdirSync( __dirname );
+var IndexModel = require('../models/index');
 
-files.forEach(function( file ){
-    var file_name = path.basename( file, '.js' );
 
-    if( file_name != 'index' ){
-        exports[file_name] = require( './' + file_name );
-    }
-});
+module.exports = function (router) {
+
+    var model = new IndexModel();
+
+
+    router.get('/', function (req, res) {
+        
+        res.render('index', model);
+        
+    });
+
+};
