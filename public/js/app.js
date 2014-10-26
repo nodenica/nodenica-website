@@ -81,24 +81,24 @@ require.config({
 	}
 });
 
-require( [ 'jquery', 'underscore', 'bootstrapTransition', 'bootstrapCollapse', 'searchMode', 'bootstrapTab', 'bootstrapCarousel', 'jqueryVimeoEmbed' ], function ( $, _ ) {
+require(['jquery', 'underscore', 'bootstrapTransition', 'bootstrapCollapse', 'searchMode', 'bootstrapTab', 'bootstrapCarousel', 'jqueryVimeoEmbed' ], function ( $, _ ) {
 	'use strict';
 
-	$( '.vimeo-thumb' ).each( function () {
-		$( this ).smartVimeoEmbed( _( {
-			width: $( this ).data( 'width' )
-		} ).defaults( { width: 640 } ) );
-	} );
+	$('.vimeo-thumb').each(function() {
+		$(this).smartVimeoEmbed(_({
+			width: $( this ).data('width')
+		}).defaults({width: 640}));
+	});
 
-	var screenWidth = function () {
+	var screenWidth = function() {
 		return ( window.innerWidth > 0 ) ? window.innerWidth : screen.width;
 	};
 
-	$( window ).on( 'resize', _.debounce( function () {
-		if ( screenWidth() > 991 ) {
-			$( '#readable-navbar-collapse' )
-				.removeAttr( 'style' )
-				.removeClass( 'in' );
+	$( window ).on('resize', _.debounce(function() {
+		if (screenWidth() > 991) {
+			$('#readable-navbar-collapse')
+				.removeAttr('style')
+				.removeClass('in');
 		}
-	}, 500 ) );
-} );
+	}, 500));
+});
