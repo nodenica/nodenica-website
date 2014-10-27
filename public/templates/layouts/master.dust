@@ -12,7 +12,7 @@
 
   <!-- Custom styles for this template -->
   <!-- build:css stylesheets/main.css -->
-  <link href="css/main.css" rel="stylesheet">
+  <link href="/css/main.css" rel="stylesheet">
   <!-- endbuild -->
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
