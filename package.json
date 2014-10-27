@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "adaro": "^0.1.5",
+    "deasync": "0.0.7",
     "dustjs-helpers": "^1.2.0",
+    "dustjs-helpers-gravatar": "0.0.1",
+    "dustjs-helpers-markdown": "0.0.1",
+    "dustjs-helpers-moment": "0.0.1",
     "dustjs-linkedin": "^2.3.6",
     "engine-munger": "^0.2.0",
     "express": "^4.3.0",
@@ -18,7 +22,9 @@
     "kraken-js": "^1.0.1",
     "localizr": "^0.1.0",
     "node-sass": "^0.8.6",
-    "requirejs": "^2.1.15"
+    "request": "^2.46.0",
+    "requirejs": "^2.1.15",
+    "should": "^4.1.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

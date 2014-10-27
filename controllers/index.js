@@ -1,18 +1,18 @@
 'use strict';
 
+var ArticleModel = require('../models/article');
 
-var IndexModel = require('../models/index');
+module.exports = function(router) {
 
+  var articleModel = new ArticleModel();
 
-module.exports = function (router) {
+  router.get('/', function(req, res) {
 
-    var model = new IndexModel();
+    var model = {
+      articles: articleModel.getAll(10)
+    };
 
+    res.render('index', model);
 
-    router.get('/', function (req, res) {
-        
-        res.render('index', model);
-        
-    });
-
+  });
 };
