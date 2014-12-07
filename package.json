@@ -1,7 +1,7 @@
 {
   "name": "nodenica-website",
   "version": "0.1.0",
-  "description": "Sitio web de la Comunidad de Desarrolladores Node.js en Nicaragua",
+  "description": "Sitio web de la Comunidad de Desarrolladores node.js en Nicaragua",
   "author": "Paulo McNally",
   "main": "index.js",
   "scripts": {
