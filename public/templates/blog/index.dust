@@ -1,7 +1,7 @@
 {>"layouts/master" /}
 
 {<title}
-Inicio
+Blog
 {/title}
 
 {<body}
@@ -39,7 +39,7 @@ Inicio
         </h2>
         <h3>Short Description</h3>
         {@markdown}
-          {content}
+        {content}
         {/markdown}
       </div>
       <!-- End of the content -->
@@ -55,6 +55,6 @@ Inicio
   </div>
 </div>
 {:else}
-  <div>No existen artículo</div>
+<div>No existen artículo</div>
 {/articles}
 {/body}

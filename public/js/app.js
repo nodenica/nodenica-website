@@ -19,86 +19,117 @@ require.config({
 	shim: {
 		bootstrapAffix: {
 			deps: [
-				'jquery'
+			'jquery'
 			]
 		},
 		bootstrapAlert: {
 			deps: [
-				'jquery'
+			'jquery'
 			]
 		},
 		bootstrapButton: {
 			deps: [
-				'jquery'
+			'jquery'
 			]
 		},
 		bootstrapCarousel: {
 			deps: [
-				'jquery'
+			'jquery'
 			]
 		},
 		bootstrapCollapse: {
 			deps: [
-				'jquery',
-				'bootstrapTransition'
+			'jquery',
+			'bootstrapTransition'
 			]
 		},
 		bootstrapDropdown: {
 			deps: [
-				'jquery'
+			'jquery'
 			]
 		},
 		bootstrapPopover: {
 			deps: [
-				'jquery'
+			'jquery'
 			]
 		},
 		bootstrapScrollspy: {
 			deps: [
-				'jquery'
+			'jquery'
 			]
 		},
 		bootstrapTab: {
 			deps: [
-				'jquery'
+			'jquery'
 			]
 		},
 		bootstrapTooltip: {
 			deps: [
-				'jquery'
+			'jquery'
 			]
 		},
 		bootstrapTransition: {
 			deps: [
-				'jquery'
+			'jquery'
 			]
 		},
 		jqueryVimeoEmbed: {
 			deps: [
-				'jquery'
+			'jquery'
 			]
 		}
 	}
 });
 
-require(['jquery', 'underscore', 'bootstrapTransition', 'bootstrapCollapse', 'searchMode', 'bootstrapTab', 'bootstrapCarousel', 'jqueryVimeoEmbed' ], function ( $, _ ) {
-	'use strict';
+require([
+	'jquery',
+	'underscore',
+	'bootstrapTransition',
+	'bootstrapCollapse',
+	'searchMode',
+	'bootstrapTab',
+	'bootstrapCarousel',
+	'jqueryVimeoEmbed'
+	],
+	function($, _) {
 
-	$('.vimeo-thumb').each(function() {
-		$(this).smartVimeoEmbed(_({
-			width: $( this ).data('width')
+  $('.vimeo-thumb').each(function() {
+    $(this).smartVimeoEmbed(_({
+			width: $(this).data('width')
 		}).defaults({width: 640}));
-	});
+  });
 
-	var screenWidth = function() {
-		return ( window.innerWidth > 0 ) ? window.innerWidth : screen.width;
+  var screenWidth = function() {
+		return (window.innerWidth > 0) ? window.innerWidth : screen.width;
 	};
 
-	$( window ).on('resize', _.debounce(function() {
-		if (screenWidth() > 991) {
-			$('#readable-navbar-collapse')
-				.removeAttr('style')
-				.removeClass('in');
-		}
-	}, 500));
+  $(window).on('resize', _.debounce(function() {
+    if (screenWidth() > 991) {
+      $('#readable-navbar-collapse')
+			.removeAttr('style')
+			.removeClass('in');
+    }
+  }, 500));
+
+  (function() {
+    var ids = [
+				'nav_index',
+				'nav_blog',
+				'nav_questions',
+				'nav_training',
+				'nav_login',
+				'nav_register'
+    ];
+    var pathsnames = [
+				'/',
+				'/blog',
+				'/questions',
+				'/training',
+				'/user/login',
+				'/user/register'
+    ];
+    var pos = _.indexOf(pathsnames, window.location.pathname);
+
+    $('#' + ids[pos]).addClass('active');
+  })();
 });

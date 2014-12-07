@@ -8,7 +8,7 @@
   <meta name="author" content="ProteusThemes">
   <link rel="shortcut icon" href="images/favicon.png">
 
-  <title>{+title /}</title>
+  <title>{+title /} - node.js Nicaragua</title>
 
   <!-- Custom styles for this template -->
   <!-- build:css stylesheets/main.css -->
@@ -42,10 +42,10 @@
   {>"layouts/search" /}
   <div class="container">
     <div class="row">
-      <div class="col-xs-12  col-md-8">
+      <div class="col-xs-12 col-md-8">
         {+body /}
       </div>
-      <div class="col-xs-12  col-md-4">
+      <div class="col-xs-12 col-md-4">
         {>"layouts/widget-app-android" /}
         {>"layouts/sidebar" /}
       </div>
@@ -54,5 +54,6 @@
   </div>
   {>"layouts/footer" /}
   <script data-main="/js/app" src="/components/requirejs/require.js"></script>
+  {+scripts /}
 </body>
 </html>
