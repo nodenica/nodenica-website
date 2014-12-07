@@ -1,0 +1,34 @@
+{>"layouts/master" /}
+
+{<title}
+Activar cuenta
+{/title}
+
+{<body}
+<div class="boxed  push-down-45">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+      <div class="contact">
+        <h2>Activar cuenta</h2>
+        <div class="alert alert-info contact__text">
+          Usted debe tener un nuevo mensaje en su bandeja de entrada de su correo electrónico con un enlace para activar su cuenta.
+        </div>
+        <div col-xs-6>
+          <img class="img-responsive" src="http://i.imgur.com/bmt8aaB.png" alt="node.js network" />
+        </div>
+        <div col-xs-6>
+          <h2>Conectate con otros desarrolladores</h2>
+          <p class="contact__text">Aquí usted encontrará a gente de todo el mundo compartiendo sus conocimientos y experiencias en el desarrollo de aplicaciones con node.js, te invitamos a hacer preguntas.</p>
+        </div>
+        <div col-xs-6>
+          <img class="img-responsive" src="http://i.imgur.com/zXmaIXh.png" alt="node.js network" />
+        </div>
+        <div col-xs-6>
+          <h2>Herramientas para Desarrolladores</h2>
+          <p class="contact__text">Aprenda acerca de las herramientas que utilizan las grandes empresas en todo el mundo, lo mejor de todo es que son de código abierto.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{/body}

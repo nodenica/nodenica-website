@@ -18,10 +18,13 @@
     "dustjs-linkedin": "^2.3.6",
     "engine-munger": "^0.2.0",
     "express": "^4.3.0",
+    "flash": "^1.1.0",
     "kraken-devtools": "^1.0.0",
     "kraken-js": "^1.0.1",
     "localizr": "^0.1.0",
+    "mandrill-api": "^1.0.41",
     "node-sass": "^0.8.6",
+    "randomstring": "^1.0.3",
     "request": "^2.46.0",
     "requirejs": "^2.1.15",
     "should": "^4.1.0"

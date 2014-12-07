@@ -78,6 +78,30 @@
         "name": "kraken-js/middleware/500",
         "arguments": [ "errors/500" ]
       }
+    },
+
+    "flash": {
+      "enabled": true,
+      "priority": 102,
+      "module": {
+        "name": "flash"
+      }
+    },
+
+    "auth": {
+      "priority": 101,
+      "enabled": true,
+      "module": {
+        "name": "path:./lib/auth"
+      }
+    },
+
+    "email": {
+      "priority": 101,
+      "enabled": true,
+      "module": {
+        "name": "path:./lib/email"
+      }
     }
 
   }

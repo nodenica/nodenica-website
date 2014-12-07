@@ -12,6 +12,8 @@ module.exports = function ApiModel() {
 
   var apiUrl = process.env.NODENICA_API_URL || 'http://localhost:5000/api/';
 
+  var contentType = 'application/json; charset=utf-8';
+
   return {
     post: function(resource, params, accessToken) {
       var options = {
@@ -26,7 +28,12 @@ module.exports = function ApiModel() {
         }
       }
       var response = postSync(options);
-      return JSON.parse(response.body);
+      if (response.headers['content-type'] === contentType) {
+        return JSON.parse(response.body);
+      }
+      else {
+        return response.body;
+      }
     },
     put: function(resource, params, accessToken) {
       var options = {
@@ -41,7 +48,12 @@ module.exports = function ApiModel() {
         }
       }
       var response = putSync(options);
-      return JSON.parse(response.body);
+      if (response.headers['content-type'] === contentType) {
+        return JSON.parse(response.body);
+      }
+      else {
+        return response.body;
+      }
     },
     get: function(resource, query, accessToken) {
       if (query) {
@@ -56,7 +68,12 @@ module.exports = function ApiModel() {
         }
       }
       var response = getSync(options);
-      return JSON.parse(response.body);
+      if (response.headers['content-type'] === contentType) {
+        return JSON.parse(response.body);
+      }
+      else {
+        return response.body;
+      }
     },
     del: function(resource, accessToken) {
       var options = {
@@ -68,7 +85,12 @@ module.exports = function ApiModel() {
         }
       }
       var response = deleteSync(options);
-      return JSON.parse(response.body);
+      if (response.headers['content-type'] === contentType) {
+        return JSON.parse(response.body);
+      }
+      else {
+        return response.body;
+      }
     }
   };
 };

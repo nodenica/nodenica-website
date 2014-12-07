@@ -17,25 +17,44 @@
     </div>
 
 
-    <nav class="navbar  navbar-default" role="navigation">
+    <nav class="navbar navbar-default" role="navigation">
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse  navbar-collapse" id="readable-navbar-collapse">
-        <ul class="navigation">
-          <li class="active">
+      <div class="collapse navbar-collapse" id="readable-navbar-collapse">
+        <ul class="navigation nav navbar-nav">
+          <li id='nav_index'>
             <a href="/">Inicio</a>
           </li>
-          <li>
+          <li id='nav_blog'>
             <a href="/blog">Blog</a>
           </li>
-          <li>
+          <li id='nav_questions'>
             <a href="/questions">Preguntas</a>
           </li>
-          <li>
+          <li id='nav_training'>
             <a href="/training">Entrenamiento</a>
           </li>
         </ul>
+        {^auth}
+        <ul class="navigation nav navbar-nav navbar-right">
+          <li id='nav_login'>
+            <a href="/user/login">Iniciar sesión {auth.id}</a>
+          </li>
+          <li id='nav_register'>
+            <a href="/user/register">Registrarte</a>
+          </li>
+        </ul>
+        {/auth}
+        {?auth}
+        <ul class="navigation nav navbar-nav navbar-right">
+          <li>
+            <a href="/user/logout">Salir</a>
+          </li>
+        </ul>
+        {/auth}
       </div><!-- /.navbar-collapse -->
     </nav>
+
+
 
 
     <div class="hidden-xs  hidden-sm">
