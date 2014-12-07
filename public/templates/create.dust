@@ -1,0 +1,57 @@
+{>"layouts/editor" /}
+
+{<title}
+Crear publicación
+{/title}
+
+{<body}
+<div class="boxed push-down-45 no-border-radius no-padding">
+  <div class="col-xs-12 col-xs-offset-1 no-padding no-margin">
+    <input type="text" class="input-editor" name="title" placeholder="Título" value={form.email}>
+  </div>
+  <div class="meta no-padding no-margin">
+    <div class="row-fluid">
+      <div class="features">
+        <section class="editor">
+          <div class="outer">
+            <div class="editorwrap">
+              <section class="entry-markdown">
+                <header class="floatingheader">
+                  &nbsp;&nbsp; Markdown
+                </header>
+                <section class="entry-markdown-content">
+                  <textarea id="entry-markdown">Ghost has an incredibly simple concept for writing. You write in [Markdown](http://daringfireball.net/markdown) on the left, and you see an immediate preview of exactly what your post will look like in rendered HTML on the right.
+                    ###The Benefits Are Obvious!
+                    * Never stop writing, format on the fly
+                    * No messing around with *buttons* everywhere
+                    * No writing repetitive HTML markup
+                    * Mobile friendly
+                    It's a wonderful solution to a problem which bloggers have faced for many years now.
+                    > Applying a multitude of formatting styles, with very little effort, and seeing those styles rendered exactly as they will appear on the website.
+                    Give it a try! Start typing in the `Markdown` box. It's easy.</textarea>
+                  </section>
+                </section>
+                <section class="entry-preview active">
+                  <header class="floatingheader">
+                    &nbsp;&nbsp; Preview <span class="entry-word-count">0 words</span>
+                  </header>
+                  <section class="entry-preview-content">
+                    <div class="rendered-markdown"></div>
+                  </section>
+                </section>
+              </section>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <div class="publish-bar">
+        <div class="col-xs-12">
+          <button class="btn btn-primary btn-lg pull-right"><i class="fa fa-paper-plane fa-fw"></i> Publicar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{/body}
