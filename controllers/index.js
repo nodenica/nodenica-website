@@ -15,4 +15,10 @@ module.exports = function(router) {
     res.render('index', model);
 
   });
+
+  router.get('/create', function(req, res) {
+
+    res.render('create', null);
+
+  });
 };

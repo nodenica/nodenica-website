@@ -1,20 +1,21 @@
 require.config({
 	paths: {
-		jquery:              '../components/jquery/dist/jquery',
-		underscore:          '../components/underscore/underscore',
-		bootstrapAffix:      '../components/sass-bootstrap/js/affix',
-		bootstrapAlert:      '../components/sass-bootstrap/js/alert',
-		bootstrapButton:     '../components/sass-bootstrap/js/button',
-		bootstrapCarousel:   '../components/sass-bootstrap/js/carousel',
-		bootstrapCollapse:   '../components/sass-bootstrap/js/collapse',
-		bootstrapDropdown:   '../components/sass-bootstrap/js/dropdown',
-		bootstrapModal:      '../components/sass-bootstrap/js/modal',
-		bootstrapPopover:    '../components/sass-bootstrap/js/popover',
-		bootstrapScrollspy:  '../components/sass-bootstrap/js/scrollspy',
-		bootstrapTab:        '../components/sass-bootstrap/js/tab',
-		bootstrapTooltip:    '../components/sass-bootstrap/js/tooltip',
+		jquery: '../components/jquery/dist/jquery',
+		underscore: '../components/underscore/underscore',
+		bootstrapAffix: '../components/sass-bootstrap/js/affix',
+		bootstrapAlert: '../components/sass-bootstrap/js/alert',
+		bootstrapButton: '../components/sass-bootstrap/js/button',
+		bootstrapCarousel: '../components/sass-bootstrap/js/carousel',
+		bootstrapCollapse: '../components/sass-bootstrap/js/collapse',
+		bootstrapDropdown: '../components/sass-bootstrap/js/dropdown',
+		bootstrapModal: '../components/sass-bootstrap/js/modal',
+		bootstrapPopover: '../components/sass-bootstrap/js/popover',
+		bootstrapScrollspy: '../components/sass-bootstrap/js/scrollspy',
+		bootstrapTab: '../components/sass-bootstrap/js/tab',
+		bootstrapTooltip: '../components/sass-bootstrap/js/tooltip',
 		bootstrapTransition: '../components/sass-bootstrap/js/transition',
-		jqueryVimeoEmbed:    '../components/jquery-smart-vimeo-embed/jquery-smartvimeoembed'
+		jqueryVimeoEmbed: '../components/jquery-smart-vimeo-embed/jquery-smartvimeoembed',
+		ghostdown: '../js/ghostdown'
 	},
 	shim: {
 		bootstrapAffix: {
@@ -89,7 +90,8 @@ require([
 	'searchMode',
 	'bootstrapTab',
 	'bootstrapCarousel',
-	'jqueryVimeoEmbed'
+	'jqueryVimeoEmbed',
+	'ghostdown'
 	],
 	function($, _) {
 
@@ -132,4 +134,5 @@ require([
 
     $('#' + ids[pos]).addClass('active');
   })();
+
 });
