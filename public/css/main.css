@@ -11527,6 +11527,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 
 .floatingheader {
   padding-top: 15px;
+  background-color: #ffffff;
+  z-index: 1000000;
 }
 
 .entry-markdown {
