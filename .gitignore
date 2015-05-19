@@ -16,3 +16,6 @@ npm-debug.log
 node_modules
 
 .idea/
+
+public/components/
+.build/
