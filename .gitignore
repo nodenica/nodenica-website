@@ -33,3 +33,5 @@ public/components/
 
 # mac files
 .DS_Store
+
+.env
