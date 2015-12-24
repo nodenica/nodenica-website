@@ -266,8 +266,8 @@ exports.login = function( req, res ){
             break;
         case 'POST':
 
-            if( req.param('back') ){
-                back = req.param('back');
+            if( req.query.back ){
+                back = req.query.back;
             }
 
             models.users.findOne({ username: { $regex: req.body.username, $options: 'i' }, password: helpers.users.passwordHash( req.body.password ) }, 'username name email range badges active avatar' , function(err,user){
