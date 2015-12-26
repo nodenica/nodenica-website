@@ -30,8 +30,11 @@ exports.setup = function(_mongoose,_db){
         avatar: String
     });
 
+    /**
+     * Retrieves an user by username. The query is done using case insentive
+     * regexs.
+     **/
     schema.statics.findByUsername = function(username, projection, cb) {
-        // Retrieves a user by his username using case insensitive regexp.
         // We use these slower regexps because of issue #9.
         if (arguments.length < 3) {
             cb = projection
@@ -51,7 +54,7 @@ exports.setup = function(_mongoose,_db){
     };
 
     /**
-     * Retrieves an user by name. The query is done using case insentive regexs.
+     * Retrieves an user by email. The query is done using case insentive regexs.
      **/
     schema.statics.findByEmail = function(email, projection, cb) {
         if (arguments.length < 3) {
