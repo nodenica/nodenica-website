@@ -4,6 +4,9 @@ var site = require('./site');
 exports.init = function(){
 
     process.on('uncaughtException', function (error) {
+        if (!site.admins) {
+            return console.log(error.stack);
+        };
 
         site.admins(function(admins){
             if( admins ){
@@ -18,7 +21,6 @@ exports.init = function(){
                 });
             }
         });
-
     });
 
 }
