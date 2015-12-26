@@ -8,17 +8,23 @@ exports.message = function( message, level ){
 
     level = level || 'info';
 
+    if (client) {
         client.captureMessage( message, {level: level} );
+    }
+    else {
         console.info(message);
-
+    }
 }
 
 // Error message
 exports.error = function( message ){
 
-    if (client)
+    if (client) {
         client.captureError(new Error( message ));
-    else
+    }
+    else {
         console.error(message);
+    }
+
 
 }
