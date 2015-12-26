@@ -13,6 +13,9 @@ var get = function(callback){
             console.log( err );
             callback( null );
         }
+        else if (!data) {
+            callback(undefined);
+        }
         else{
             callback( data.value );
         }
