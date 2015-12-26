@@ -50,6 +50,26 @@ exports.setup = function(_mongoose,_db){
         );
     };
 
+    /**
+     * Retrieves an user by name. The query is done using case insentive regexs.
+     **/
+    schema.statics.findByEmail = function(email, projection, cb) {
+        if (arguments.length < 3) {
+            cb = projection
+            projection = undefined;
+        };
+
+        var findExpression = new RegExp(
+            '^' + email.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') + '$'
+        );
+
+        this.findOne(
+            {email: { $regex: findExpression, $options: 'i'} },
+            projection,
+            cb
+        );
+    };
+
     schema.statics.findByCredentials = function(username, password, projection, cb) {
         if (arguments.length < 4) {
             cb = projection

@@ -88,7 +88,7 @@ exports.signUp = function( req, res ){
 
                 async.parallel({
                         username: function(callback){
-                            models.users.findByUsername(req.body.username, function(err, user) {
+                            models.users.findByUsername(req.body.username.trim(), function(err, user) {
                                 if( err ){
                                     callback(err, null);
                                 }
@@ -105,7 +105,7 @@ exports.signUp = function( req, res ){
                         },
                         email: function(callback){
 
-                            models.users.findOne({email: req.body.email }, function(err, user){
+                            models.users.findByEmail(req.body.email.trim(), function(err, user){
                                 if( err ){
                                     callback(err, null);
                                 }
