@@ -28,6 +28,26 @@ exports.setup = function(_mongoose,_db){
         avatar: String
     });
 
+    schema.statics.findByUsername = function(username, projection, cb) {
+        // Retrieves a user by his username using case insensitive regexp.
+        // We use these slower regexps because of issue #9.
+        if (arguments.length < 3) {
+            cb = projection
+            projection = undefined;
+        };
+
+        // escape username. Avoid abuses like ".*" as username
+        var findExpression = new RegExp(
+            '^' + username.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') + '$'
+        );
+
+        this.findOne(
+            {username: { $regex: findExpression, $options: 'i'} },
+            projection,
+            cb
+        );
+    };
+
     _db.model( file_name, schema);
 
     var data = _db.model( file_name );

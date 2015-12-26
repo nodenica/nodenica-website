@@ -11,11 +11,16 @@ moment.lang( config.lang );
 
 
 exports.get = function( req, res ){
+    var username = req.params.username,
+        projection = [
+            'username', 'name', 'email', 'avatar', 'badges', 'activity',
+            'repositories', 'modules', 'stars', 'created_at'
+        ].join(' ');
 
-    models.users.findOne({username: req.params.username }, 'username name email avatar badges activity repositories modules stars created_at', function(err, user){
+    models.users.findByUsername(username, projection, userQueryCallback);
 
+    function userQueryCallback(err, user){
         if( user ){
-
             if( user.activity.length > 0 ){
                 var i = 0;
                 user.activity.forEach(function(activity){
@@ -39,9 +44,8 @@ exports.get = function( req, res ){
             res.redirect('/');
         }
 
-    });
-
-}
+    };
+};
 
 
 /**
