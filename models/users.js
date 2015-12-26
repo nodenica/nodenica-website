@@ -1,3 +1,5 @@
+var helpers = require( '../helpers' );
+
 exports.setup = function(_mongoose,_db){
 
     var file_name = require('path').basename( __filename, '.js' );
@@ -46,6 +48,26 @@ exports.setup = function(_mongoose,_db){
             projection,
             cb
         );
+    };
+
+    schema.statics.findByCredentials = function(username, password, projection, cb) {
+        if (arguments.length < 4) {
+            cb = projection
+            projection = undefined;
+        };
+
+        this.findByUsername(username, projection, function(err, user) {
+            if (err) {
+                return cb(err, user);
+            };
+
+            if (user.password!==helpers.users.passwordHash(password)) {
+                cb(err, undefined);
+                return
+            };
+
+            return cb(err, user);
+        });
     };
 
     _db.model( file_name, schema);
