@@ -269,12 +269,12 @@ exports.login = function( req, res ){
             res.render(helpers.site.template( 'login' ), { form: req.body });
             break;
         case 'POST':
-
+            var projection = 'username password name email range badges active avatar';
             if( req.query.back ){
                 back = req.query.back;
             }
 
-            models.users.findOne({ username: { $regex: req.body.username, $options: 'i' }, password: helpers.users.passwordHash( req.body.password ) }, 'username name email range badges active avatar' , function(err,user){
+            models.users.findByCredentials(req.body.username, req.body.password, projection, function(err,user){
                 if( !err ){
                     if( user ){
 
