@@ -89,8 +89,7 @@ exports.setup = function(_mongoose,_db){
             };
 
             if (user.password!==helpers.users.passwordHash(password)) {
-                cb(err, undefined);
-                return
+                return cb(err, undefined);
             };
 
             return cb(err, user);
