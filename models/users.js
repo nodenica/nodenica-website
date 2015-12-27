@@ -73,6 +73,10 @@ exports.setup = function(_mongoose,_db){
         );
     };
 
+    /**
+     * Retrieves an user by her credentials. If a projection is indicated,
+     * it should include the password property.
+     **/
     schema.statics.findByCredentials = function(username, password, projection, cb) {
         if (arguments.length < 4) {
             cb = projection
