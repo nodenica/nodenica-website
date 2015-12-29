@@ -1,3 +1,5 @@
+var helpers = require( '../helpers' );
+
 exports.setup = function(_mongoose,_db){
 
     var file_name = require('path').basename( __filename, '.js' );
@@ -27,6 +29,72 @@ exports.setup = function(_mongoose,_db){
         active_token: String,
         avatar: String
     });
+
+    /**
+     * Retrieves an user by username. The query is done using case insentive
+     * regexs.
+     **/
+    schema.statics.findByUsername = function(username, projection, cb) {
+        // We use these slower regexps because of issue #9.
+        if (arguments.length < 3) {
+            cb = projection
+            projection = undefined;
+        };
+
+        // escape username. Avoid abuses like ".*" as username
+        var findExpression = new RegExp(
+            '^' + username.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') + '$'
+        );
+
+        this.findOne(
+            {username: { $regex: findExpression, $options: 'i'} },
+            projection,
+            cb
+        );
+    };
+
+    /**
+     * Retrieves an user by email. The query is done using case insentive regexs.
+     **/
+    schema.statics.findByEmail = function(email, projection, cb) {
+        if (arguments.length < 3) {
+            cb = projection
+            projection = undefined;
+        };
+
+        var findExpression = new RegExp(
+            '^' + email.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') + '$'
+        );
+
+        this.findOne(
+            {email: { $regex: findExpression, $options: 'i'} },
+            projection,
+            cb
+        );
+    };
+
+    /**
+     * Retrieves an user by her credentials. If a projection is indicated,
+     * it should include the password property.
+     **/
+    schema.statics.findByCredentials = function(username, password, projection, cb) {
+        if (arguments.length < 4) {
+            cb = projection
+            projection = undefined;
+        };
+
+        this.findByUsername(username, projection, function(err, user) {
+            if (err) {
+                return cb(err, user);
+            };
+
+            if (user.password!==helpers.users.passwordHash(password)) {
+                return cb(err, undefined);
+            };
+
+            return cb(err, user);
+        });
+    };
 
     _db.model( file_name, schema);
 

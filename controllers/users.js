@@ -11,11 +11,16 @@ moment.lang( config.lang );
 
 
 exports.get = function( req, res ){
+    var username = req.params.username,
+        projection = [
+            'username', 'name', 'email', 'avatar', 'badges', 'activity',
+            'repositories', 'modules', 'stars', 'created_at'
+        ].join(' ');
 
-    models.users.findOne({username: req.params.username }, 'username name email avatar badges activity repositories modules stars created_at', function(err, user){
+    models.users.findByUsername(username, projection, userQueryCallback);
 
+    function userQueryCallback(err, user){
         if( user ){
-
             if( user.activity.length > 0 ){
                 var i = 0;
                 user.activity.forEach(function(activity){
@@ -39,9 +44,8 @@ exports.get = function( req, res ){
             res.redirect('/');
         }
 
-    });
-
-}
+    };
+};
 
 
 /**
@@ -84,7 +88,7 @@ exports.signUp = function( req, res ){
 
                 async.parallel({
                         username: function(callback){
-                            models.users.findOne({username: req.body.username }, function(err, user){
+                            models.users.findByUsername(req.body.username.trim(), function(err, user) {
                                 if( err ){
                                     callback(err, null);
                                 }
@@ -101,7 +105,7 @@ exports.signUp = function( req, res ){
                         },
                         email: function(callback){
 
-                            models.users.findOne({email: req.body.email }, function(err, user){
+                            models.users.findByEmail(req.body.email.trim(), function(err, user){
                                 if( err ){
                                     callback(err, null);
                                 }
@@ -265,12 +269,12 @@ exports.login = function( req, res ){
             res.render(helpers.site.template( 'login' ), { form: req.body });
             break;
         case 'POST':
-
+            var projection = 'username password name email range badges active avatar';
             if( req.query.back ){
                 back = req.query.back;
             }
 
-            models.users.findOne({ username: { $regex: req.body.username, $options: 'i' }, password: helpers.users.passwordHash( req.body.password ) }, 'username name email range badges active avatar' , function(err,user){
+            models.users.findByCredentials(req.body.username, req.body.password, projection, function(err,user){
                 if( !err ){
                     if( user ){
 

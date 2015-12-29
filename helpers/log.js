@@ -1,20 +1,30 @@
 var config = require('../config');
 var raven = require('raven');
 
-var client = new raven.Client( config.log.url );
+var client = config.log.url ? new raven.Client( config.log.url ) : false;
 
 // Simple message
 exports.message = function( message, level ){
 
     level = level || 'info';
 
-    client.captureMessage( message, {level: level} );
-
+    if (client) {
+        client.captureMessage( message, {level: level} );
+    }
+    else {
+        console.info(message);
+    }
 }
 
 // Error message
 exports.error = function( message ){
 
-    client.captureError(new Error( message ));
+    if (client) {
+        client.captureError(new Error( message ));
+    }
+    else {
+        console.error(message);
+    }
+
 
 }
