@@ -13,14 +13,11 @@ var models          = require('./models');
 var routes          = require('./routes');
 var config          = require('./config');
 var helpers         = require('./helpers');
+var util            = require('util');
 
 // Session store
 var store = new MongoStore({
-    host: config.mongodb.host,
-    port: config.mongodb.port,
-    db: config.mongodb.db,
-    username: config.mongodb.username,
-    password: config.mongodb.password
+    url: util.format('mongodb://%s:%s@%s:%s/%s', config.mongodb.username, config.mongodb.password, config.mongodb.host, config.mongodb.port, config.mongodb.db)
 });
 
 helpers.socket.setStore( store );
