@@ -88,6 +88,10 @@ exports.setup = function(_mongoose,_db){
                 return cb(err, user);
             };
 
+            if (!user) {
+                return cb(err, user);
+            };
+
             if (user.password!==helpers.users.passwordHash(password)) {
                 return cb(err, undefined);
             };
