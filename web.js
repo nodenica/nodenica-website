@@ -35,7 +35,7 @@ if( helpers.site.isProduction() ){
 // Socket settings
 io.set('log level', 0);
 io.set('authorization', helpers.socket.authorization);
-io.set("transports", ["xhr-polling"]);
+io.set("transports", ['websocket']);
 io.set("polling duration", 10);
 
 server.listen( config.port );
