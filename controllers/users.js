@@ -150,13 +150,6 @@ exports.signUp = function( req, res ){
                                         res.render(helpers.site.template( 'singup' ), { error: error, focus: focus, form: req.body });
                                     }
                                     else{
-                                        // Add activity
-                                        var activity = {
-                                            name: newUser.name,
-                                            username: newUser.username
-                                        }
-                                        helpers.users.addActivity('new_user', activity, req.socketio);
-
                                         // Send email
                                         var email = {
                                             text: util.format( res.lingua.content.sing_up.email.subject, helpers.users.nameFormat( req.body.first_name, req.body.last_name ) ) + '\n\n' + util.format( res.lingua.content.sing_up.email.body, res.locals.siteUrl + '/user/activate/' + newUser.active_token ),
@@ -227,6 +220,13 @@ exports.activateAction = function( req, res ){
                                 res.render(helpers.site.template( 'activate' ), { mode: 'action', error: err });
                             }
                             else{
+                                // Add activity
+                                var activity = {
+                                  name: user.name,
+                                  username: user.username
+                                }
+                                helpers.users.addActivity('new_user', activity, req.socketio);
+
                                 res.redirect('/user/login?a=1');
                             }
 
