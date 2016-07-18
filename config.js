@@ -52,7 +52,7 @@ module.exports = {
         user: process.env.SMTP_USERNAME || '',
         password: process.env.SMTP_PASSWORD || '',
         host: process.env.SMTP_HOST || '',
-        ssl: true
+        tls: true
     },
 
     /**
