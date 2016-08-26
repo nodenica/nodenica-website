@@ -23,8 +23,8 @@ app.use(helmet.contentSecurityPolicy({
   // Specify directives as normal.
   directives: {
     defaultSrc: ["'self'", 'www.nodenica.com'],
-    scriptSrc: ["'self'", "'unsafe-inline'"],
-    styleSrc: ['www.nodenica.com'],
+    scriptSrc: ["'self'", "'unsafe-inline'", 'www.google-analytics.com'],
+    styleSrc: ['www.nodenica.com', 'fonts.googleapis.com', 'google-code-prettify.googlecode.com'],
     imgSrc: ['www.nodenica.com', 'data:'],
     sandbox: ['allow-forms', 'allow-scripts'],
     reportUri: '/report-violation',
