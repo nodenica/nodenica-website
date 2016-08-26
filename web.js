@@ -14,6 +14,41 @@ var routes          = require('./routes');
 var config          = require('./config');
 var helpers         = require('./helpers');
 var util            = require('util');
+var helmet          = require('helmet');
+
+// helmet
+app.use(helmet());
+
+app.use(helmet.contentSecurityPolicy({
+  // Specify directives as normal.
+  directives: {
+    defaultSrc: ["'self'", 'www.nodenica.com'],
+    scriptSrc: ["'self'", "'unsafe-inline'"],
+    styleSrc: ['www.nodenica.com'],
+    imgSrc: ['www.nodenica.com', 'data:'],
+    sandbox: ['allow-forms', 'allow-scripts'],
+    reportUri: '/report-violation',
+    objectSrc: [] // An empty array allows nothing through
+  },
+
+  // Set to true if you only want browsers to report errors, not block them
+  reportOnly: false,
+
+  // Set to true if you want to blindly set all headers: Content-Security-Policy,
+  // X-WebKit-CSP, and X-Content-Security-Policy.
+  setAllHeaders: false,
+
+  // Set to true if you want to disable CSP on Android where it can be buggy.
+  disableAndroid: false,
+
+  // Set to false if you want to completely disable any user-agent sniffing.
+  // This may make the headers less compatible but it will be much faster.
+  // This defaults to `true`.
+  browserSniff: true
+}));
+
+// disable x-powered-by
+app.disable('x-powered-by');
 
 // Session store
 var store = new MongoStore({
