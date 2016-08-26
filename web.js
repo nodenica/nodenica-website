@@ -22,11 +22,30 @@ app.use(helmet());
 app.use(helmet.contentSecurityPolicy({
   // Specify directives as normal.
   directives: {
-    defaultSrc: ["'self'", 'www.nodenica.com'],
-    scriptSrc: ["'self'", "'unsafe-inline'", 'www.google-analytics.com', 'cdn.rawgit.com'],
-    styleSrc: ['www.nodenica.com', 'fonts.googleapis.com', 'cdn.rawgit.com'],
-    imgSrc: ['www.nodenica.com', 'data:'],
-    sandbox: ['allow-forms', 'allow-scripts'],
+    defaultSrc: [
+      "'self'",
+      'www.nodenica.com',
+      'fonts.gstatic.com'
+    ],
+    scriptSrc: [
+      "'self'",
+      "'unsafe-inline'",
+      'www.google-analytics.com',
+      'cdn.rawgit.com'
+    ],
+    styleSrc: [
+      'www.nodenica.com',
+      'fonts.googleapis.com',
+      'cdn.rawgit.com'
+    ],
+    imgSrc: [
+      'www.nodenica.com',
+      'data:'
+    ],
+    sandbox: [
+      'allow-forms',
+      'allow-scripts'
+    ],
     reportUri: '/report-violation',
     objectSrc: [] // An empty array allows nothing through
   },
