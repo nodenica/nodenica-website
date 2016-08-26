@@ -19,53 +19,6 @@ var helmet          = require('helmet');
 // helmet
 app.use(helmet());
 
-app.use(helmet.contentSecurityPolicy({
-  // Specify directives as normal.
-  directives: {
-    defaultSrc: [
-      "'self'",
-      'www.nodenica.com',
-      'fonts.gstatic.com'
-    ],
-    scriptSrc: [
-      "'self'",
-      "'unsafe-inline'",
-      'www.google-analytics.com',
-      'cdn.rawgit.com'
-    ],
-    styleSrc: [
-      'www.nodenica.com',
-      'fonts.googleapis.com',
-      'cdn.rawgit.com'
-    ],
-    imgSrc: [
-      'www.nodenica.com',
-      'data:'
-    ],
-    sandbox: [
-      'allow-forms',
-      'allow-scripts'
-    ],
-    reportUri: '/report-violation',
-    objectSrc: [] // An empty array allows nothing through
-  },
-
-  // Set to true if you only want browsers to report errors, not block them
-  reportOnly: false,
-
-  // Set to true if you want to blindly set all headers: Content-Security-Policy,
-  // X-WebKit-CSP, and X-Content-Security-Policy.
-  setAllHeaders: false,
-
-  // Set to true if you want to disable CSP on Android where it can be buggy.
-  disableAndroid: false,
-
-  // Set to false if you want to completely disable any user-agent sniffing.
-  // This may make the headers less compatible but it will be much faster.
-  // This defaults to `true`.
-  browserSniff: true
-}));
-
 // disable x-powered-by
 app.disable('x-powered-by');
 
